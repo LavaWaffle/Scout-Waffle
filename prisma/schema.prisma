@@ -1,15 +1,68 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// migrate cmd
+// pnpx prisma migrate dev --name init
+
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "sqlite"
-    url      = env("DATABASE_URL")
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
-model Example {
-    id String @id @default(cuid())
+model Game {
+  id        String   @id @default(cuid())
+  name      String
+  // auto
+  autoBalls Int
+  // teleop
+  markers   Marker[]
+  // endgame
+  cargoRP   Int
+  climpRP   Int
+  weWin     Boolean
+  ourTeam   Team
+
+	// meta data
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+	// name in the database
+  @@map(name: "game")
+}
+
+// teleop model
+model Marker {
+  id        String  @id @default(cuid())
+	// position in the game
+  left      Float
+  top       Float
+	// launch data
+  launchOne Launch
+  launchTwo Launch
+
+	// relation data
+  Game      Game?   @relation(fields: [gameId], references: [id])
+  gameId    String?
+
+	// name in the database
+  @@map(name: "marker")
+}
+
+// teleop enum
+enum Launch {
+  GotIn
+  BounceOut
+  MissClose
+  MissFar
+  NoLaunch
+}
+
+// endgame enum
+enum Team {
+  Red
+  Blue
 }

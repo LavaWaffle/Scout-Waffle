@@ -2,22 +2,20 @@
 // trpc imports
 import { withTRPC } from "@trpc/next";
 import type { AppRouter } from "../server/router";
-import type { AppType } from "next/dist/shared/lib/utils";
 import superjson from "superjson";
 import "../styles/globals.css";
 
 // mantine imports
 import { GetServerSidePropsContext } from 'next';
-import { useEffect, useState } from 'react';
 import { AppProps } from 'next/app';
 import { getCookie, setCookies } from 'cookies-next';
 import Head from 'next/head';
 import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
+import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 
 // component imports
 import Layout from "@/components/Layout";
-import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 
 const MyApp = (props: AppProps & { colorScheme: ColorScheme }) => {
   const { Component, pageProps } = props;
@@ -28,7 +26,7 @@ const MyApp = (props: AppProps & { colorScheme: ColorScheme }) => {
     deserialize: (str) => (str === undefined ? props.colorScheme : superjson.parse(str)),
     getInitialValueInEffect: true,
   });
-  console.log(props.colorScheme);
+  
   const toggleColorScheme = (value?: ColorScheme) => {
     const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
     setColorScheme(nextColorScheme);
