@@ -1,8 +1,13 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// prisma commands
 // migrate cmd
-// pnpx prisma migrate dev --name init
+// 		pnpx prisma migrate dev --name init
+// format cmd
+// 		pnpx prisma format
+// prisma studio cmd (visualize db)
+// 		pnpx prisma studio 
 
 generator client {
   provider = "prisma-client-js"
@@ -22,33 +27,34 @@ model Game {
   markers   Marker[]
   // endgame
   cargoRP   Int
+  climbBar  ClimbBar
   climpRP   Int
   weWin     Boolean
   ourTeam   Team
 
-	// meta data
+  // meta data
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-	// name in the database
+  // name in the database
   @@map(name: "game")
 }
 
 // teleop model
 model Marker {
-  id        String  @id @default(cuid())
-	// position in the game
+  id        String @id @default(cuid())
+  // position in the game
   left      Float
   top       Float
-	// launch data
+  // launch data
   launchOne Launch
   launchTwo Launch
 
-	// relation data
-  Game      Game?   @relation(fields: [gameId], references: [id])
-  gameId    String?
+  // relation data
+  Game   Game?   @relation(fields: [gameId], references: [id])
+  gameId String?
 
-	// name in the database
+  // name in the database
   @@map(name: "marker")
 }
 
@@ -61,8 +67,15 @@ enum Launch {
   NoLaunch
 }
 
-// endgame enum
+// endgame enums
 enum Team {
   Red
   Blue
+}
+
+enum ClimbBar {
+  Low
+  Middle
+  High
+  Traversal
 }

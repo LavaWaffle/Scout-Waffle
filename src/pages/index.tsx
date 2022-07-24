@@ -12,8 +12,6 @@ const Home: NextPage = () => {
       console.log(data);
     }
   }, [isLoading])
-  // prisma studio cmd (visualize db)
-  // pnpx prisma studio 
 
   // const technologies = trpc.useQuery(["example.getAll"]);
   // console.log(technologies.data);
