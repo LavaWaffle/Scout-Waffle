@@ -1,9 +1,8 @@
 import {
   AppShell,
-  Navbar,
+  Container,
   Header,
   Footer,
-  Aside,
   Text,
   MediaQuery,
   Burger,
@@ -30,21 +29,14 @@ function Layout({ children }: props) {
         navbarOffsetBreakpoint="sm"
         asideOffsetBreakpoint="sm"
         fixed
-        navbar={
-          <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
-            <Text>Application navbar</Text>
-          </Navbar>
-        }
-        aside={
-          <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-            <Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 300 }}>
-              <Text>Application sidebar</Text>
-            </Aside>
-          </MediaQuery>
-        }
+        // navbar={
+        //   <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 250 }}>
+        //     <Text>Application navbar</Text>
+        //   </Navbar>
+        // }
         footer={
-          <Footer height={60} p="md">
-            Application footer
+          <Footer height={60} p="md" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+            <Text>hi</Text>
           </Footer>
         }
         header={

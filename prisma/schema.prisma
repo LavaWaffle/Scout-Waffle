@@ -8,9 +8,11 @@
 // 		pnpx prisma format
 // prisma studio cmd (visualize db)
 // 		pnpx prisma studio 
-
+// generate cmd (update ts imporst)
+// 		pnpx prisma generate
 generator client {
   provider = "prisma-client-js"
+  output = "../src/server/db/generated/prisma-client-ts"
 }
 
 datasource db {
@@ -47,6 +49,8 @@ model AutoLaunch {
   launchTwo Launch
   game      Game   @relation(fields: [gameId], references: [id])
   gameId    String @unique
+
+  @@map(name: "auto_launch")
 }
 
 // teleop model

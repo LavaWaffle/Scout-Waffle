@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import { useEffect } from "react";
 import { trpc } from "../utils/trpc";
+import { Container, Text } from "@mantine/core";
 
 const Home: NextPage = () => {
   const hello = trpc.useQuery(["example.hello", { text: "from tRPC" }]);
@@ -18,10 +19,25 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <main className="container mx-auto flex flex-col items-center justify-center h-screen p-4">
-        
-        
-      </main>
+      <Container
+        fluid
+        style={{
+          display: "grid",
+          placeItems: "center",
+          height: "70vh"
+        }} 
+      >
+        <Text
+          style={{
+            fontSize: "2rem",
+          }}
+          weight={500}
+          color="primary"
+          align="center"
+        >
+          Add Map Here
+        </Text>
+      </Container>
     </>
   );
 };

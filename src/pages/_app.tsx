@@ -16,6 +16,7 @@ import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 
 // component imports
 import Layout from "@/components/Layout";
+import { GameContextProvider } from "@/context/GameContext";
 
 const MyApp = (props: AppProps & { colorScheme: ColorScheme }) => {
   const { Component, pageProps } = props;
@@ -38,16 +39,20 @@ const MyApp = (props: AppProps & { colorScheme: ColorScheme }) => {
   return (
     <>
       <Head>
-        <title>Create T3 App</title>
+        <title>Scout Waffle</title>
         <meta name="description" content="Scout Waffle" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
         <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
           <NotificationsProvider>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
+            <GameContextProvider>
+              <div className={colorScheme === 'dark' ? 'dark' : ''}>
+                <Layout>
+                  <Component {...pageProps} />
+                </Layout>
+              </div>
+            </GameContextProvider>
           </NotificationsProvider>
         </MantineProvider>
       </ColorSchemeProvider>

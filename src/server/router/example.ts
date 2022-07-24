@@ -14,8 +14,35 @@ export const exampleRouter = createRouter()
       };
     },
   })
-  .query("getAll", {
+  .query("test", {
     async resolve({ ctx }) {
-      return await ctx.prisma.example.findMany();
+      return await ctx.prisma.game.create({
+        data: {
+          name: "test",
+          cargoRP: 0,
+          ourTeam: 'Blue',
+          weWin: 'Tie',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          markers: {
+            create: [
+              {
+                top: 0,
+                left: 0,
+                launchOne: 'GotIn',
+                launchTwo: 'GotIn',
+              }
+            ]
+          },
+          climbBar: "Low",
+          climpRP: 0,
+          autoBalls: {
+            create: {
+              launchOne: 'BounceOut',
+              launchTwo: 'BounceOut',
+            }
+          }
+        }
+      })
     },
   });
