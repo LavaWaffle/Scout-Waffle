@@ -19,17 +19,17 @@ datasource db {
 }
 
 model Game {
-  id        String   @id @default(cuid())
+  id        String      @id @default(cuid())
   name      String
   // auto
-  autoBalls Int
+  autoBalls AutoLaunch?
   // teleop
   markers   Marker[]
   // endgame
   cargoRP   Int
   climbBar  ClimbBar
   climpRP   Int
-  weWin     Boolean
+  weWin     Win
   ourTeam   Team
 
   // meta data
@@ -38,6 +38,15 @@ model Game {
 
   // name in the database
   @@map(name: "game")
+}
+
+// auto model
+model AutoLaunch {
+  id        String @id @unique @default(cuid())
+  launchOne Launch
+  launchTwo Launch
+  game      Game   @relation(fields: [gameId], references: [id])
+  gameId    String @unique
 }
 
 // teleop model
@@ -71,6 +80,12 @@ enum Launch {
 enum Team {
   Red
   Blue
+}
+
+enum Win {
+  Win
+  Lose
+  Tie
 }
 
 enum ClimbBar {

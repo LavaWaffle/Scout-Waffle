@@ -1,3 +1,19 @@
-# Create T3 App
+# Scout Waffle
 
-This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
+## To Do
+- [ ] Front End
+  - [ ] Add auto modal
+    - [ ] Launch data
+  - [ ] Add front end game map
+    - [ ] Display game map
+    - [ ] Display markers on click
+      - [ ] Open modal on click for launch data
+  - [ ] Add end game modal
+    - [ ] Cargo Ranking Point boolean
+    - [ ] Climb Bar ("Low", "Middle", "High", "Traversal")
+    - [ ] Climb Ranking Point boolean
+    - [ ] We Win ("Win", "Lose", "Tie")
+    - [ ] Our Team ("Red", "Blue")
+- [ ] Back End
+  - [ ] TRPC function to write data to mysql database
+  - [ ] Set up planet scale mysql database
