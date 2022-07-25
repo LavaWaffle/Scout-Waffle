@@ -34,12 +34,6 @@ export function GameContextProvider({ children }: GameContextProviderProps) {
     return autoLaunch;
   }
 
-  // auto log game context changes
-  useEffect(() => {
-    console.log(autoLaunch);
-  }, [autoLaunch])
-  
-
   function getMarkers() {
     return markers;
   }

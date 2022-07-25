@@ -6,6 +6,7 @@ import type { Launch, ClimbBar, Win, Team } from '@prisma/client';
 import LaunchModal from './LaunchModal';
 import EndModal from './EndModal';
 import { Constants } from "@/Constants";
+import UploadModal from './UploadModal';
 type props = {
   children: JSX.Element
 }
@@ -37,6 +38,9 @@ const Layout: React.FC<props> = ({ children }) => {
   const [win, setWin] = useState<Win>('Tie');
   const [ourTeam, setOurTeam] = useState<Team>('Blue');
 
+  // upload state
+  const [uploadOpened, setUploadOpened] = useState<boolean>(false);
+
   useEffect(() => {
     // update game context with end state
     setGame({
@@ -63,25 +67,39 @@ const Layout: React.FC<props> = ({ children }) => {
         fixed
         footer={
           <Footer height={60} p="md">
-            <Group position='center' align='center'>
-              <Button 
-                style={{marginTop: '-0.25rem'}} 
-                variant="outline" 
-                color='pink'
-                onClick={() => setAutoOpened(!autoOpened)}
-              >
-                Auto Data
-              </Button>
+            <div>
+              {/* middle */}
+              <Group position="center">
+                <Button 
+                  style={{marginTop: '-0.25rem'}} 
+                  variant="outline" 
+                  color='pink'
+                  onClick={() => setAutoOpened(!autoOpened)}
+                >
+                  Auto Data
+                </Button>
 
-              <Button 
-                style={{marginTop: '-0.25rem'}} 
-                variant="outline" 
-                color='pink'
-                onClick={() => setEndOpened(!endOpened)}
-              >
-                End Game Data
-              </Button>
-            </Group>
+                <Button 
+                  style={{marginTop: '-0.25rem'}} 
+                  variant="outline" 
+                  color='pink'
+                  onClick={() => setEndOpened(!endOpened)}
+                >
+                  End Game Data
+                </Button>
+              </Group>
+              {/* right */}
+              <Group position='right'>
+                <Button 
+                    style={{marginTop: '-2.25rem'}} 
+                    variant="outline" 
+                    color='pink'
+                    onClick={() => setUploadOpened(!uploadOpened)}
+                  >
+                  Upload
+                </Button>
+              </Group>
+              </div>
           </Footer>
         }
         header={
@@ -129,6 +147,10 @@ const Layout: React.FC<props> = ({ children }) => {
           teamFunc={setOurTeam}
           currentTeam={ourTeam}
           team={['Blue','Red']}
+        />
+        <UploadModal 
+          isOpen={uploadOpened}
+          onClose={() => setUploadOpened(false)}
         />
       </AppShell>
     </>
