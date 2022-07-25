@@ -53,8 +53,8 @@ $ pnpm run dev
 
 ### Deployment
 1. Create a [vercel project](https://vercel.com/new)
-  1.5 Make sure to create your own git repository
+> Make sure to create your own github repository
 2. Connect the deployment to the [database](https://docs.planetscale.com/docs/tutorials/connect-any-application)
-  2.5 Take url from the database and add it to the [vercel environment variables](https://vercel.com/docs/concepts/projects/environment-variables)
-  2.75 (DATABASE_URL = link from step 2)
+> Take url from the database and add it to the [vercel environment variables](https://vercel.com/docs/concepts/projects/environment-variables)
+ >> (DATABASE_URL = link from step 2)
 
