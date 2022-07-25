@@ -1,5 +1,5 @@
 import { createContext, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
-import type { Game, Marker as marker, AutoLaunch as autoLaunch } from '@/server/db/generated/prisma-client-ts';
+import type { Game, Marker as marker, AutoLaunch as autoLaunch } from '@prisma/client';
 
 // remove ids from types
 interface Marker extends Omit<marker, 'id'|'gameId'> {}

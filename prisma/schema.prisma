@@ -12,12 +12,14 @@
 // 		pnpx prisma generate
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/server/db/generated/prisma-client-ts"
+  // output   = "../src/server/db/generated/prisma-client-ts"
+  previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
 }
 
 model Game {
@@ -98,4 +100,8 @@ enum ClimbBar {
   Middle
   High
   Traversal
+}
+
+model OwO {
+  test String @id @default(cuid())
 }

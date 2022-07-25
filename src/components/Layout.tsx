@@ -2,7 +2,7 @@ import { AppShell, Header, Footer, Text, useMantineTheme, Group, Button, Modal, 
 import React, { useEffect, useState } from 'react'
 import { useGameContext } from '@/context/GameContext';
 import { ColorSchemeToggle } from './ColorSchemeToggle';
-import type { Launch } from '@/server/db/generated/prisma-client-ts';
+import type { Launch } from '@prisma/client';
 import LaunchModal from './LaunchModal';
 
 type props = {

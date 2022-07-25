@@ -103,6 +103,7 @@ const LaunchCard: React.FC<LaunchCardProps> = (props) => {
         borderWidth: '2px',
         borderStyle: 'solid',
         borderColor: props.currentLaunch === props.launch ? 'pink' : theme.colors.gray[1],
+        cursor: 'pointer',
       }}
       onClick={props.onClick}
     >
