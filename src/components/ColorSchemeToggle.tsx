@@ -1,13 +1,15 @@
-import { ActionIcon, Group, useMantineColorScheme } from '@mantine/core';
+import { ActionIcon, Button, Group, useMantineColorScheme } from '@mantine/core';
 import { SunIcon, MoonIcon } from '@modulz/radix-icons';
 
 export function ColorSchemeToggle() {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
   return (
-    <ActionIcon
+    <Button
       onClick={() => toggleColorScheme()}
-      size="xl"
+      className="px-2"
+      variant="outline"
+      color="pink"
       sx={(theme) => ({
         backgroundColor:
           theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
@@ -19,6 +21,6 @@ export function ColorSchemeToggle() {
       ) : (
         <MoonIcon width={20} height={20} />
       )}
-    </ActionIcon>
+    </Button>
   );
 }

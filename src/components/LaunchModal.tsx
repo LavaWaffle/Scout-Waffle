@@ -1,6 +1,6 @@
 import React from 'react'
 import WaffleModal from './WaffleModal'
-import { Text, Image, useMantineTheme, Group } from "@mantine/core"
+import { Text, Image, useMantineTheme, Group, Button } from "@mantine/core"
 import { Launch } from '@prisma/client'
 
 type LaunchModalProps = {
@@ -13,6 +13,7 @@ type LaunchModalProps = {
   launchFuncTwo: (launch: Launch) => void,
   currentLaunchTwo: Launch,
   launchTwo: Launch[],
+  submitButton: boolean,
 }
 
 const LaunchModal: React.FC<LaunchModalProps> = (props) => {
@@ -51,6 +52,12 @@ const LaunchModal: React.FC<LaunchModalProps> = (props) => {
           />
         ))}
       </div>
+      {/* submit button */}
+      {props.submitButton && (
+        <Group position='center'>
+          <Button variant="outline" color="pink" size="md" onClick={props.onClose}>Submit</Button>
+        </Group>
+      )}
       </>
     </WaffleModal>
   )

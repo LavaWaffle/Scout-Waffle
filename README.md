@@ -1,13 +1,13 @@
 # Scout Waffle
 
 ## To Do
-- [ ] Front End
+- [x] Front End
   - [x] Add auto modal
     - [x] Launch data
-  - [ ] Add front end game map
-    - [ ] Display game map
-    - [ ] Display markers on click
-      - [ ] Open modal on click for launch data
+  - [x] Add front end game map
+    - [x] Display game map
+    - [x] Display markers on click
+      - [x] Open modal on click for launch data
   - [x] Add end game modal
     - [x] Cargo Ranking Point boolean
     - [x] Climb Bar ("NoClimb", "Low", "Middle", "High", "Traversal")

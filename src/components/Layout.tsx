@@ -1,4 +1,4 @@
-import { AppShell, Header, Footer, Text, useMantineTheme, Group, Button } from '@mantine/core';
+import { AppShell, Footer, useMantineTheme, Group, Button } from '@mantine/core';
 import React, { useEffect, useState } from 'react'
 import { useGameContext } from '@/context/GameContext';
 import { ColorSchemeToggle } from './ColorSchemeToggle';
@@ -62,16 +62,14 @@ const Layout: React.FC<props> = ({ children }) => {
             background: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
           },
         }}
-        navbarOffsetBreakpoint="sm"
-        asideOffsetBreakpoint="sm"
-        fixed
         footer={
           <Footer height={60} p="md">
-            <div>
+            <div className='flex items-center justify-between'>   
+              <ColorSchemeToggle />
               {/* middle */}
-              <Group position="center">
+              <Group position="center" style={{paddingLeft: "4.5rem"}}>
                 <Button 
-                  style={{marginTop: '-0.25rem'}} 
+                  style={{marginTop: '-0.5rem'}} 
                   variant="outline" 
                   color='pink'
                   onClick={() => setAutoOpened(!autoOpened)}
@@ -80,7 +78,7 @@ const Layout: React.FC<props> = ({ children }) => {
                 </Button>
 
                 <Button 
-                  style={{marginTop: '-0.25rem'}} 
+                  style={{marginTop: '-0.5rem'}} 
                   variant="outline" 
                   color='pink'
                   onClick={() => setEndOpened(!endOpened)}
@@ -91,7 +89,7 @@ const Layout: React.FC<props> = ({ children }) => {
               {/* right */}
               <Group position='right'>
                 <Button 
-                    style={{marginTop: '-2.25rem'}} 
+                    style={{marginTop: '-0.5rem'}} 
                     variant="outline" 
                     color='pink'
                     onClick={() => setUploadOpened(!uploadOpened)}
@@ -101,15 +99,6 @@ const Layout: React.FC<props> = ({ children }) => {
               </Group>
               </div>
           </Footer>
-        }
-        header={
-          <Header height={70} p="md">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '100%',}}>  
-              <Text>Application header</Text>
-              
-              <ColorSchemeToggle />
-            </div>
-          </Header>
         }
       >
         <main>
@@ -125,6 +114,7 @@ const Layout: React.FC<props> = ({ children }) => {
           launchFuncTwo={setAutoLaunchTwo}
           currentLaunchTwo={autoLaunchTwo}
           launchTwo={['GotIn','BounceOut','MissClose','MissFar']}
+          submitButton={false}
         />
         <EndModal 
           isOpen={endOpened}

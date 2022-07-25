@@ -29,7 +29,7 @@ export function GameContextProvider({ children }: GameContextProviderProps) {
   const [autoLaunch, setAutoLaunch] = useState<AutoLaunch>();
   const [game, setGame] = useState<Game>();
   const [markers, setMarkers] = useState<Marker[]>();
-
+  
   function getAuto() {
     return autoLaunch;
   }
