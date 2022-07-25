@@ -1,6 +1,10 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// pscale cmds
+// connect to db
+//    pscale connect scout_waffle shadow --port 3309
+
 // prisma commands
 // migrate cmd
 // 		pnpx prisma migrate dev --name init
@@ -100,8 +104,4 @@ enum ClimbBar {
   Middle
   High
   Traversal
-}
-
-model OwO {
-  test String @id @default(cuid())
 }
