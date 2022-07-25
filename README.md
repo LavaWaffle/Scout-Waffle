@@ -8,12 +8,12 @@
     - [ ] Display game map
     - [ ] Display markers on click
       - [ ] Open modal on click for launch data
-  - [ ] Add end game modal
-    - [ ] Cargo Ranking Point boolean
-    - [ ] Climb Bar ("Low", "Middle", "High", "Traversal")
-    - [ ] Climb Ranking Point boolean
-    - [ ] We Win ("Win", "Lose", "Tie")
-    - [ ] Our Team ("Red", "Blue")
+  - [x] Add end game modal
+    - [x] Cargo Ranking Point boolean
+    - [x] Climb Bar ("NoClimb", "Low", "Middle", "High", "Traversal")
+    - [x] Climb Ranking Point boolean
+    - [x] We Win ("Win", "Lose", "Tie")
+    - [x] Our Team ("Red", "Blue")
 - [ ] Back End
   - [ ] TRPC function to write data to mysql database
   - [x] Set up planet scale mysql database

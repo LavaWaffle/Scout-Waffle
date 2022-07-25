@@ -1,9 +1,10 @@
 import { createContext, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
-import type { Game, Marker as marker, AutoLaunch as autoLaunch } from '@prisma/client';
+import type { Game as game, Marker as marker, AutoLaunch as autoLaunch } from '@prisma/client';
 
 // remove ids from types
 interface Marker extends Omit<marker, 'id'|'gameId'> {}
 interface AutoLaunch extends Omit<autoLaunch, 'id'|'gameId'> {}
+interface Game extends Omit<game, 'id'|'createdAt'|'updatedAt'> {}
 
 type GameContextProviderProps = {
   children: ReactNode;

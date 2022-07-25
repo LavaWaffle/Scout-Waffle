@@ -4,8 +4,10 @@
   "cSpell.words": [
     "dbname",
     "elif",
+    "Mantine",
     "pnpm",
     "pnpx",
     "pscale"
-  ]
+  ],
+  "deepscan.enable": true
 }

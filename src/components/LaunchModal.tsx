@@ -62,7 +62,7 @@ type SubTitleProps = {
   subTitle: string
 }
 
-const SubTitle: React.FC<SubTitleProps> = (props) => {
+export const SubTitle: React.FC<SubTitleProps> = (props) => {
   return (
     <Text
       className='text-3xl pt-2'
@@ -87,9 +87,7 @@ type LaunchCardProps = {
   onClick: () => void
 }
 
-interface LaunchCardOmitProps extends Omit<LaunchCardProps, 'src'|'alt'|'onClick'|'currentLaunch'> {}
-
-const LaunchCard: React.FC<LaunchCardProps> = (props) => {
+export const LaunchCard: React.FC<LaunchCardProps> = (props) => {
   const theme = useMantineTheme();
   return (
     <Group
