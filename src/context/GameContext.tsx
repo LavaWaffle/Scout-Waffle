@@ -1,4 +1,4 @@
-import { createContext, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
+import { createContext, ReactNode, SetStateAction, useContext, useState } from "react";
 import type { Game as game, Marker as marker, AutoLaunch as autoLaunch } from '@prisma/client';
 
 // remove ids from types
