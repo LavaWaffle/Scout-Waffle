@@ -1,0 +1,101 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// prisma commands
+// migrate cmd
+// 		pnpx prisma migrate dev --name init
+// format cmd
+// 		pnpx prisma format
+// prisma studio cmd (visualize db)
+// 		pnpx prisma studio 
+// generate cmd (update ts imporst)
+// 		pnpx prisma generate
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/server/db/generated/prisma-client-ts"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Game {
+  id         String      @id @default(cuid())
+  name       String
+  tournament String
+  // auto
+  autoBalls  AutoLaunch?
+  // teleop
+  markers    Marker[]
+  // endgame
+  cargoRP    Int
+  climbBar   ClimbBar
+  climbRP    Int
+  weWin      Win
+  ourTeam    Team
+
+  // meta data
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // name in the database
+  @@map(name: "game")
+}
+
+// auto model
+model AutoLaunch {
+  id        String @id @unique @default(cuid())
+  launchOne Launch
+  launchTwo Launch
+  game      Game   @relation(fields: [gameId], references: [id])
+  gameId    String @unique
+
+  @@map(name: "auto_launch")
+}
+
+// teleop model
+model Marker {
+  id        String @id @default(cuid())
+  // position in the game
+  left      Float
+  top       Float
+  // launch data
+  launchOne Launch
+  launchTwo Launch
+
+  // relation data
+  Game   Game?   @relation(fields: [gameId], references: [id])
+  gameId String?
+
+  // name in the database
+  @@map(name: "marker")
+}
+
+// teleop enum
+enum Launch {
+  GotIn
+  BounceOut
+  MissClose
+  MissFar
+  NoLaunch
+}
+
+// endgame enums
+enum Team {
+  Red
+  Blue
+}
+
+enum Win {
+  Win
+  Lose
+  Tie
+}
+
+enum ClimbBar {
+  Low
+  Middle
+  High
+  Traversal
+}
