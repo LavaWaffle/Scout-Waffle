@@ -41,6 +41,8 @@ const EndModal: React.FC<EndModalProps> = (props) => {
           value={props.gameName}
           onChange={(e) => props.gameNameFunc(e.currentTarget.value)}
           className='pb-5 pt-3'
+          size="lg"
+          color='pink'
         />
         <SubTitle subTitle='Cargo RP'/>
         {/* wrapper */}
