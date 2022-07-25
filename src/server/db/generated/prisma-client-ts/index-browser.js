@@ -90,9 +90,10 @@ function makeEnum(x) { return x; }
 exports.Prisma.GameScalarFieldEnum = makeEnum({
   id: 'id',
   name: 'name',
+  tournament: 'tournament',
   cargoRP: 'cargoRP',
   climbBar: 'climbBar',
-  climpRP: 'climpRP',
+  climbRP: 'climbRP',
   weWin: 'weWin',
   ourTeam: 'ourTeam',
   createdAt: 'createdAt',

@@ -19,9 +19,10 @@ type UnwrapTuple<Tuple extends readonly unknown[]> = {
 export type Game = {
   id: string
   name: string
+  tournament: string
   cargoRP: number
   climbBar: ClimbBar
-  climpRP: number
+  climbRP: number
   weWin: Win
   ourTeam: Team
   createdAt: Date
@@ -964,20 +965,21 @@ export namespace Prisma {
 
   export type GameAvgAggregateOutputType = {
     cargoRP: number | null
-    climpRP: number | null
+    climbRP: number | null
   }
 
   export type GameSumAggregateOutputType = {
     cargoRP: number | null
-    climpRP: number | null
+    climbRP: number | null
   }
 
   export type GameMinAggregateOutputType = {
     id: string | null
     name: string | null
+    tournament: string | null
     cargoRP: number | null
     climbBar: ClimbBar | null
-    climpRP: number | null
+    climbRP: number | null
     weWin: Win | null
     ourTeam: Team | null
     createdAt: Date | null
@@ -987,9 +989,10 @@ export namespace Prisma {
   export type GameMaxAggregateOutputType = {
     id: string | null
     name: string | null
+    tournament: string | null
     cargoRP: number | null
     climbBar: ClimbBar | null
-    climpRP: number | null
+    climbRP: number | null
     weWin: Win | null
     ourTeam: Team | null
     createdAt: Date | null
@@ -999,9 +1002,10 @@ export namespace Prisma {
   export type GameCountAggregateOutputType = {
     id: number
     name: number
+    tournament: number
     cargoRP: number
     climbBar: number
-    climpRP: number
+    climbRP: number
     weWin: number
     ourTeam: number
     createdAt: number
@@ -1012,20 +1016,21 @@ export namespace Prisma {
 
   export type GameAvgAggregateInputType = {
     cargoRP?: true
-    climpRP?: true
+    climbRP?: true
   }
 
   export type GameSumAggregateInputType = {
     cargoRP?: true
-    climpRP?: true
+    climbRP?: true
   }
 
   export type GameMinAggregateInputType = {
     id?: true
     name?: true
+    tournament?: true
     cargoRP?: true
     climbBar?: true
-    climpRP?: true
+    climbRP?: true
     weWin?: true
     ourTeam?: true
     createdAt?: true
@@ -1035,9 +1040,10 @@ export namespace Prisma {
   export type GameMaxAggregateInputType = {
     id?: true
     name?: true
+    tournament?: true
     cargoRP?: true
     climbBar?: true
-    climpRP?: true
+    climbRP?: true
     weWin?: true
     ourTeam?: true
     createdAt?: true
@@ -1047,9 +1053,10 @@ export namespace Prisma {
   export type GameCountAggregateInputType = {
     id?: true
     name?: true
+    tournament?: true
     cargoRP?: true
     climbBar?: true
-    climpRP?: true
+    climbRP?: true
     weWin?: true
     ourTeam?: true
     createdAt?: true
@@ -1152,9 +1159,10 @@ export namespace Prisma {
   export type GameGroupByOutputType = {
     id: string
     name: string
+    tournament: string
     cargoRP: number
     climbBar: ClimbBar
-    climpRP: number
+    climbRP: number
     weWin: Win
     ourTeam: Team
     createdAt: Date
@@ -1183,11 +1191,12 @@ export namespace Prisma {
   export type GameSelect = {
     id?: boolean
     name?: boolean
+    tournament?: boolean
     autoBalls?: boolean | AutoLaunchArgs
     markers?: boolean | MarkerFindManyArgs
     cargoRP?: boolean
     climbBar?: boolean
-    climpRP?: boolean
+    climbRP?: boolean
     weWin?: boolean
     ourTeam?: boolean
     createdAt?: boolean
@@ -3843,9 +3852,10 @@ export namespace Prisma {
   export const GameScalarFieldEnum: {
     id: 'id',
     name: 'name',
+    tournament: 'tournament',
     cargoRP: 'cargoRP',
     climbBar: 'climbBar',
-    climpRP: 'climpRP',
+    climbRP: 'climbRP',
     weWin: 'weWin',
     ourTeam: 'ourTeam',
     createdAt: 'createdAt',
@@ -3896,11 +3906,12 @@ export namespace Prisma {
     NOT?: Enumerable<GameWhereInput>
     id?: StringFilter | string
     name?: StringFilter | string
+    tournament?: StringFilter | string
     autoBalls?: XOR<AutoLaunchRelationFilter, AutoLaunchWhereInput> | null
     markers?: MarkerListRelationFilter
     cargoRP?: IntFilter | number
     climbBar?: EnumClimbBarFilter | ClimbBar
-    climpRP?: IntFilter | number
+    climbRP?: IntFilter | number
     weWin?: EnumWinFilter | Win
     ourTeam?: EnumTeamFilter | Team
     createdAt?: DateTimeFilter | Date | string
@@ -3910,11 +3921,12 @@ export namespace Prisma {
   export type GameOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
+    tournament?: SortOrder
     autoBalls?: AutoLaunchOrderByWithRelationInput
     markers?: MarkerOrderByRelationAggregateInput
     cargoRP?: SortOrder
     climbBar?: SortOrder
-    climpRP?: SortOrder
+    climbRP?: SortOrder
     weWin?: SortOrder
     ourTeam?: SortOrder
     createdAt?: SortOrder
@@ -3928,9 +3940,10 @@ export namespace Prisma {
   export type GameOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
+    tournament?: SortOrder
     cargoRP?: SortOrder
     climbBar?: SortOrder
-    climpRP?: SortOrder
+    climbRP?: SortOrder
     weWin?: SortOrder
     ourTeam?: SortOrder
     createdAt?: SortOrder
@@ -3948,9 +3961,10 @@ export namespace Prisma {
     NOT?: Enumerable<GameScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
     name?: StringWithAggregatesFilter | string
+    tournament?: StringWithAggregatesFilter | string
     cargoRP?: IntWithAggregatesFilter | number
     climbBar?: EnumClimbBarWithAggregatesFilter | ClimbBar
-    climpRP?: IntWithAggregatesFilter | number
+    climbRP?: IntWithAggregatesFilter | number
     weWin?: EnumWinWithAggregatesFilter | Win
     ourTeam?: EnumTeamWithAggregatesFilter | Team
     createdAt?: DateTimeWithAggregatesFilter | Date | string
@@ -4057,11 +4071,12 @@ export namespace Prisma {
   export type GameCreateInput = {
     id?: string
     name: string
+    tournament: string
     autoBalls?: AutoLaunchCreateNestedOneWithoutGameInput
     markers?: MarkerCreateNestedManyWithoutGameInput
     cargoRP: number
     climbBar: ClimbBar
-    climpRP: number
+    climbRP: number
     weWin: Win
     ourTeam: Team
     createdAt?: Date | string
@@ -4071,11 +4086,12 @@ export namespace Prisma {
   export type GameUncheckedCreateInput = {
     id?: string
     name: string
+    tournament: string
     autoBalls?: AutoLaunchUncheckedCreateNestedOneWithoutGameInput
     markers?: MarkerUncheckedCreateNestedManyWithoutGameInput
     cargoRP: number
     climbBar: ClimbBar
-    climpRP: number
+    climbRP: number
     weWin: Win
     ourTeam: Team
     createdAt?: Date | string
@@ -4085,11 +4101,12 @@ export namespace Prisma {
   export type GameUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    tournament?: StringFieldUpdateOperationsInput | string
     autoBalls?: AutoLaunchUpdateOneWithoutGameNestedInput
     markers?: MarkerUpdateManyWithoutGameNestedInput
     cargoRP?: IntFieldUpdateOperationsInput | number
     climbBar?: EnumClimbBarFieldUpdateOperationsInput | ClimbBar
-    climpRP?: IntFieldUpdateOperationsInput | number
+    climbRP?: IntFieldUpdateOperationsInput | number
     weWin?: EnumWinFieldUpdateOperationsInput | Win
     ourTeam?: EnumTeamFieldUpdateOperationsInput | Team
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4099,11 +4116,12 @@ export namespace Prisma {
   export type GameUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    tournament?: StringFieldUpdateOperationsInput | string
     autoBalls?: AutoLaunchUncheckedUpdateOneWithoutGameNestedInput
     markers?: MarkerUncheckedUpdateManyWithoutGameNestedInput
     cargoRP?: IntFieldUpdateOperationsInput | number
     climbBar?: EnumClimbBarFieldUpdateOperationsInput | ClimbBar
-    climpRP?: IntFieldUpdateOperationsInput | number
+    climbRP?: IntFieldUpdateOperationsInput | number
     weWin?: EnumWinFieldUpdateOperationsInput | Win
     ourTeam?: EnumTeamFieldUpdateOperationsInput | Team
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4113,9 +4131,10 @@ export namespace Prisma {
   export type GameCreateManyInput = {
     id?: string
     name: string
+    tournament: string
     cargoRP: number
     climbBar: ClimbBar
-    climpRP: number
+    climbRP: number
     weWin: Win
     ourTeam: Team
     createdAt?: Date | string
@@ -4125,9 +4144,10 @@ export namespace Prisma {
   export type GameUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    tournament?: StringFieldUpdateOperationsInput | string
     cargoRP?: IntFieldUpdateOperationsInput | number
     climbBar?: EnumClimbBarFieldUpdateOperationsInput | ClimbBar
-    climpRP?: IntFieldUpdateOperationsInput | number
+    climbRP?: IntFieldUpdateOperationsInput | number
     weWin?: EnumWinFieldUpdateOperationsInput | Win
     ourTeam?: EnumTeamFieldUpdateOperationsInput | Team
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4137,9 +4157,10 @@ export namespace Prisma {
   export type GameUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    tournament?: StringFieldUpdateOperationsInput | string
     cargoRP?: IntFieldUpdateOperationsInput | number
     climbBar?: EnumClimbBarFieldUpdateOperationsInput | ClimbBar
-    climpRP?: IntFieldUpdateOperationsInput | number
+    climbRP?: IntFieldUpdateOperationsInput | number
     weWin?: EnumWinFieldUpdateOperationsInput | Win
     ourTeam?: EnumTeamFieldUpdateOperationsInput | Team
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4331,9 +4352,10 @@ export namespace Prisma {
   export type GameCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    tournament?: SortOrder
     cargoRP?: SortOrder
     climbBar?: SortOrder
-    climpRP?: SortOrder
+    climbRP?: SortOrder
     weWin?: SortOrder
     ourTeam?: SortOrder
     createdAt?: SortOrder
@@ -4342,15 +4364,16 @@ export namespace Prisma {
 
   export type GameAvgOrderByAggregateInput = {
     cargoRP?: SortOrder
-    climpRP?: SortOrder
+    climbRP?: SortOrder
   }
 
   export type GameMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    tournament?: SortOrder
     cargoRP?: SortOrder
     climbBar?: SortOrder
-    climpRP?: SortOrder
+    climbRP?: SortOrder
     weWin?: SortOrder
     ourTeam?: SortOrder
     createdAt?: SortOrder
@@ -4360,9 +4383,10 @@ export namespace Prisma {
   export type GameMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    tournament?: SortOrder
     cargoRP?: SortOrder
     climbBar?: SortOrder
-    climpRP?: SortOrder
+    climbRP?: SortOrder
     weWin?: SortOrder
     ourTeam?: SortOrder
     createdAt?: SortOrder
@@ -4371,7 +4395,7 @@ export namespace Prisma {
 
   export type GameSumOrderByAggregateInput = {
     cargoRP?: SortOrder
-    climpRP?: SortOrder
+    climbRP?: SortOrder
   }
 
   export type StringWithAggregatesFilter = {
@@ -5048,10 +5072,11 @@ export namespace Prisma {
   export type GameCreateWithoutAutoBallsInput = {
     id?: string
     name: string
+    tournament: string
     markers?: MarkerCreateNestedManyWithoutGameInput
     cargoRP: number
     climbBar: ClimbBar
-    climpRP: number
+    climbRP: number
     weWin: Win
     ourTeam: Team
     createdAt?: Date | string
@@ -5061,10 +5086,11 @@ export namespace Prisma {
   export type GameUncheckedCreateWithoutAutoBallsInput = {
     id?: string
     name: string
+    tournament: string
     markers?: MarkerUncheckedCreateNestedManyWithoutGameInput
     cargoRP: number
     climbBar: ClimbBar
-    climpRP: number
+    climbRP: number
     weWin: Win
     ourTeam: Team
     createdAt?: Date | string
@@ -5084,10 +5110,11 @@ export namespace Prisma {
   export type GameUpdateWithoutAutoBallsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    tournament?: StringFieldUpdateOperationsInput | string
     markers?: MarkerUpdateManyWithoutGameNestedInput
     cargoRP?: IntFieldUpdateOperationsInput | number
     climbBar?: EnumClimbBarFieldUpdateOperationsInput | ClimbBar
-    climpRP?: IntFieldUpdateOperationsInput | number
+    climbRP?: IntFieldUpdateOperationsInput | number
     weWin?: EnumWinFieldUpdateOperationsInput | Win
     ourTeam?: EnumTeamFieldUpdateOperationsInput | Team
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5097,10 +5124,11 @@ export namespace Prisma {
   export type GameUncheckedUpdateWithoutAutoBallsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    tournament?: StringFieldUpdateOperationsInput | string
     markers?: MarkerUncheckedUpdateManyWithoutGameNestedInput
     cargoRP?: IntFieldUpdateOperationsInput | number
     climbBar?: EnumClimbBarFieldUpdateOperationsInput | ClimbBar
-    climpRP?: IntFieldUpdateOperationsInput | number
+    climbRP?: IntFieldUpdateOperationsInput | number
     weWin?: EnumWinFieldUpdateOperationsInput | Win
     ourTeam?: EnumTeamFieldUpdateOperationsInput | Team
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5110,10 +5138,11 @@ export namespace Prisma {
   export type GameCreateWithoutMarkersInput = {
     id?: string
     name: string
+    tournament: string
     autoBalls?: AutoLaunchCreateNestedOneWithoutGameInput
     cargoRP: number
     climbBar: ClimbBar
-    climpRP: number
+    climbRP: number
     weWin: Win
     ourTeam: Team
     createdAt?: Date | string
@@ -5123,10 +5152,11 @@ export namespace Prisma {
   export type GameUncheckedCreateWithoutMarkersInput = {
     id?: string
     name: string
+    tournament: string
     autoBalls?: AutoLaunchUncheckedCreateNestedOneWithoutGameInput
     cargoRP: number
     climbBar: ClimbBar
-    climpRP: number
+    climbRP: number
     weWin: Win
     ourTeam: Team
     createdAt?: Date | string
@@ -5146,10 +5176,11 @@ export namespace Prisma {
   export type GameUpdateWithoutMarkersInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    tournament?: StringFieldUpdateOperationsInput | string
     autoBalls?: AutoLaunchUpdateOneWithoutGameNestedInput
     cargoRP?: IntFieldUpdateOperationsInput | number
     climbBar?: EnumClimbBarFieldUpdateOperationsInput | ClimbBar
-    climpRP?: IntFieldUpdateOperationsInput | number
+    climbRP?: IntFieldUpdateOperationsInput | number
     weWin?: EnumWinFieldUpdateOperationsInput | Win
     ourTeam?: EnumTeamFieldUpdateOperationsInput | Team
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5159,10 +5190,11 @@ export namespace Prisma {
   export type GameUncheckedUpdateWithoutMarkersInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    tournament?: StringFieldUpdateOperationsInput | string
     autoBalls?: AutoLaunchUncheckedUpdateOneWithoutGameNestedInput
     cargoRP?: IntFieldUpdateOperationsInput | number
     climbBar?: EnumClimbBarFieldUpdateOperationsInput | ClimbBar
-    climpRP?: IntFieldUpdateOperationsInput | number
+    climbRP?: IntFieldUpdateOperationsInput | number
     weWin?: EnumWinFieldUpdateOperationsInput | Win
     ourTeam?: EnumTeamFieldUpdateOperationsInput | Team
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

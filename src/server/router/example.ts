@@ -19,6 +19,7 @@ export const exampleRouter = createRouter()
       return await ctx.prisma.game.create({
         data: {
           name: "test",
+          tournament: "riot",
           cargoRP: 0,
           ourTeam: 'Blue',
           weWin: 'Tie',
@@ -35,7 +36,7 @@ export const exampleRouter = createRouter()
             ]
           },
           climbBar: "Low",
-          climpRP: 0,
+          climbRP: 0,
           autoBalls: {
             create: {
               launchOne: 'BounceOut',

@@ -9,28 +9,28 @@ import "../styles/globals.css";
 import { GetServerSidePropsContext } from 'next';
 import { AppProps } from 'next/app';
 import { getCookie, setCookies } from 'cookies-next';
-import Head from 'next/head';
-import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
+import { MantineProvider, ColorScheme, ColorSchemeProvider, useMantineColorScheme } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 
 // component imports
+import Head from 'next/head';
 import Layout from "@/components/Layout";
 import { GameContextProvider } from "@/context/GameContext";
 
 const MyApp = (props: AppProps & { colorScheme: ColorScheme }) => {
   const { Component, pageProps } = props;
-  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({ 
+  const [localColorScheme, setLocalColorScheme] = useLocalStorage<ColorScheme>({ 
     key: 'mantine-color-scheme',
     defaultValue: props.colorScheme,
     serialize: superjson.stringify,
     deserialize: (str) => (str === undefined ? props.colorScheme : superjson.parse(str)),
     getInitialValueInEffect: true,
   });
-  
+
   const toggleColorScheme = (value?: ColorScheme) => {
-    const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
-    setColorScheme(nextColorScheme);
+    const nextColorScheme = value || (localColorScheme === 'dark' ? 'light' : 'dark');
+    setLocalColorScheme(nextColorScheme);
     // when color scheme is updated save it to cookie
     setCookies('mantine-color-scheme', nextColorScheme, { maxAge: 60 * 60 * 24 * 30 });
   };
@@ -41,17 +41,16 @@ const MyApp = (props: AppProps & { colorScheme: ColorScheme }) => {
       <Head>
         <title>Scout Waffle</title>
         <meta name="description" content="Scout Waffle" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/waffle2.png" />
       </Head>
-      <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-        <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
+      <ColorSchemeProvider colorScheme={localColorScheme} toggleColorScheme={toggleColorScheme}>
+        <MantineProvider theme={{ colorScheme: localColorScheme }} withGlobalStyles withNormalizeCSS>
           <NotificationsProvider>
             <GameContextProvider>
-              <div className={colorScheme === 'dark' ? 'dark' : ''}>
-                <Layout>
-                  <Component {...pageProps} />
-                </Layout>
-              </div>
+
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>   
             </GameContextProvider>
           </NotificationsProvider>
         </MantineProvider>

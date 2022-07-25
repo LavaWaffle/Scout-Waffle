@@ -12,7 +12,7 @@
 // 		pnpx prisma generate
 generator client {
   provider = "prisma-client-js"
-  output = "../src/server/db/generated/prisma-client-ts"
+  output   = "../src/server/db/generated/prisma-client-ts"
 }
 
 datasource db {
@@ -21,18 +21,19 @@ datasource db {
 }
 
 model Game {
-  id        String      @id @default(cuid())
-  name      String
+  id         String      @id @default(cuid())
+  name       String
+  tournament String
   // auto
-  autoBalls AutoLaunch?
+  autoBalls  AutoLaunch?
   // teleop
-  markers   Marker[]
+  markers    Marker[]
   // endgame
-  cargoRP   Int
-  climbBar  ClimbBar
-  climpRP   Int
-  weWin     Win
-  ourTeam   Team
+  cargoRP    Int
+  climbBar   ClimbBar
+  climbRP    Int
+  weWin      Win
+  ourTeam    Team
 
   // meta data
   createdAt DateTime @default(now())
