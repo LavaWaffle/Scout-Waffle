@@ -2,6 +2,10 @@
   "WillLuke.nextjs.addTypesOnSave": true,
   "WillLuke.nextjs.hasPrompted": true,
   "cSpell.words": [
-    "elif"
+    "dbname",
+    "elif",
+    "pnpm",
+    "pnpx",
+    "pscale"
   ]
 }

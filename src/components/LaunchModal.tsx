@@ -1,7 +1,7 @@
 import React from 'react'
 import WaffleModal from './WaffleModal'
 import { Text, Image, useMantineTheme, Group } from "@mantine/core"
-import { Launch } from '@/server/db/generated/prisma-client-ts'
+import { Launch } from '@prisma/client'
 
 type LaunchModalProps = {
   isOpen: boolean,
