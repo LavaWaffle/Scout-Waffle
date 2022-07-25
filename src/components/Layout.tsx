@@ -123,13 +123,6 @@ const Layout: React.FC<props> = ({ children }) => {
               alt="Miss Far"
               onClick={() => setAutoLaunchOne('MissFar')}
             />
-            <LaunchCard
-              currentLaunch={autoLaunchOne}
-              launch="NoLaunch"
-              src="/launches/na.svg"
-              alt="No Launch"
-              onClick={() => setAutoLaunchOne('NoLaunch')}
-            />
           </div>
 
           {/* LAUNCH TWO */}
@@ -176,13 +169,6 @@ const Layout: React.FC<props> = ({ children }) => {
               alt="Miss Far"
               onClick={() => setAutoLaunchTwo('MissFar')}
             />
-            <LaunchCard
-              currentLaunch={autoLaunchTwo}
-              launch="NoLaunch"
-              src="/launches/na.svg"
-              alt="No Launch"
-              onClick={() => setAutoLaunchTwo('NoLaunch')}
-            />
           </div>
         </Modal>
       </AppShell>
@@ -219,14 +205,15 @@ const LaunchCard: React.FC<launchCardProps> = (props) => {
     >
       <Text 
         size='lg' 
+        weight='600'
         style={{color: 
           // if current focused: pink
           props.currentLaunch === props.launch ? 
             'pink' : 
           // elif not current focused: follow default light/dark
           theme.colorScheme === 'dark' ? 
-          'white' : 
-            'black'
+          'white' : 'black',
+          userSelect: 'none',
         }}
       >
         {props.alt}
