@@ -2,8 +2,8 @@
 
 ## To Do
 - [ ] Front End
-  - [ ] Add auto modal
-    - [ ] Launch data
+  - [x] Add auto modal
+    - [x] Launch data
   - [ ] Add front end game map
     - [ ] Display game map
     - [ ] Display markers on click
