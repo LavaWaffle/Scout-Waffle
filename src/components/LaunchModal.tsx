@@ -1,6 +1,6 @@
 import React from 'react'
 import WaffleModal from './WaffleModal'
-import { Text, Image, useMantineTheme, Group, Button } from "@mantine/core"
+import { Text, Image, useMantineTheme, Group, Button, ScrollArea } from "@mantine/core"
 import { Launch } from '@prisma/client'
 
 type LaunchModalProps = {
@@ -26,32 +26,36 @@ const LaunchModal: React.FC<LaunchModalProps> = (props) => {
       <>
       <SubTitle subTitle='Launch One '/>
       {/* button wrapper */}
-      <div className='flex gap-8 pt-3 pb-8'>
-        {props.launchOne.map((launch, index) => (
-          <LaunchCard
-            key={`${index} ${launch}`}
-            currentLaunch={props.currentLaunchOne}
-            launch={launch}
-            src={`/launches/${launch.replace(/[A-Z]/g, ' $&').trim().toLowerCase()}.svg`}
-            alt={launch.replace(/[A-Z]/g, ' $&').trim()}
-            onClick={() => props.launchFuncOne(launch)}
-          />
-        ))}
-      </div>
+      <ScrollArea>
+        <div className='flex flex-nowrap whitespace-nowrap gap-8 pt-3 pb-8'>
+          {props.launchOne.map((launch, index) => (
+            <LaunchCard
+              key={`${index} ${launch}`}
+              currentLaunch={props.currentLaunchOne}
+              launch={launch}
+              src={`/launches/${launch.replace(/[A-Z]/g, ' $&').trim().toLowerCase()}.svg`}
+              alt={launch.replace(/[A-Z]/g, ' $&').trim()}
+              onClick={() => props.launchFuncOne(launch)}
+            />
+          ))}
+        </div>
+      </ScrollArea>
       <SubTitle subTitle='Launch Two '/>
       {/* button wrapper */}
-      <div className='flex gap-8 pt-3 pb-8'>
-        {props.launchTwo.map((launch, index) => (
-          <LaunchCard
-            key={`${index} ${launch}`}
-            currentLaunch={props.currentLaunchTwo}
-            launch={launch}
-            src={`/launches/${launch.replace(/[A-Z]/g, ' $&').trim().toLowerCase()}.svg`}
-            alt={launch.replace(/[A-Z]/g, ' $&').trim()}
-            onClick={() => props.launchFuncTwo(launch)}
-          />
-        ))}
-      </div>
+      <ScrollArea>
+        <div className='flex gap-8 pt-3 pb-8'>
+          {props.launchTwo.map((launch, index) => (
+            <LaunchCard
+              key={`${index} ${launch}`}
+              currentLaunch={props.currentLaunchTwo}
+              launch={launch}
+              src={`/launches/${launch.replace(/[A-Z]/g, ' $&').trim().toLowerCase()}.svg`}
+              alt={launch.replace(/[A-Z]/g, ' $&').trim()}
+              onClick={() => props.launchFuncTwo(launch)}
+            />
+          ))}
+        </div>
+      </ScrollArea>
       {/* submit button */}
       {props.submitButton && (
         <Group position='center'>
@@ -103,12 +107,13 @@ export const LaunchCard: React.FC<LaunchCardProps> = (props) => {
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-        padding: '0.65rem 1rem',
+        padding: '0.35rem',
         borderRadius: '2rem',
         borderWidth: '2px',
         borderStyle: 'solid',
         borderColor: props.currentLaunch === props.launch ? 'pink' : theme.colors.gray[1],
         cursor: 'pointer',
+        userSelect: 'none',
       }}
       onClick={props.onClick}
     >

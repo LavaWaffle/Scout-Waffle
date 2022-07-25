@@ -20,7 +20,7 @@ const WaffleModal: React.FC<WaffleModalProps> = (props) => {
           {props.title}
         </Text>}
       centered
-      size="auto"
+      size="80%"
       overflow="outside"
       transition='scale-y'
       transitionDuration={250}

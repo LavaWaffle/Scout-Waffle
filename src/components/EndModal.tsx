@@ -1,4 +1,4 @@
-import { useMantineTheme, Group, Text, Image, TextInput } from '@mantine/core'
+import { useMantineTheme, Group, Text, Image, TextInput, ScrollArea } from '@mantine/core'
 import React from 'react'
 import { SubTitle } from './LaunchModal'
 import WaffleModal from './WaffleModal'
@@ -46,88 +46,98 @@ const EndModal: React.FC<EndModalProps> = (props) => {
         />
         <SubTitle subTitle='Cargo RP'/>
         {/* wrapper */}
-        <div className='flex gap-8 pt-3 pb-8'>
-        {props.cargoRP.map((cargoRP, index) => {
-          return (
-            <Card<boolean> 
-              key={`${index} ${cargoRP}`}
-              currentThing={props.currentCargoRP}
-              thing={cargoRP}
-              src={`/end/${cargoRP ? 'true' : 'false'}.svg`} 
-              alt={cargoRP ? '1' : '0'}              
-              onClick={() => props.cargoRPFunc(cargoRP)} 
-            />
-          )
-        })}
-        </div>
+        <ScrollArea>
+          <div className='flex gap-8 pt-3 pb-8'>
+          {props.cargoRP.map((cargoRP, index) => {
+            return (
+              <Card<boolean>
+                key={`${index} ${cargoRP}`}
+                currentThing={props.currentCargoRP}
+                thing={cargoRP}
+                src={`/end/${cargoRP ? 'true' : 'false'}.svg`}
+                alt={cargoRP ? '1' : '0'}
+                onClick={() => props.cargoRPFunc(cargoRP)}
+              />
+            )
+          })}
+          </div>
+        </ScrollArea>
 
         <SubTitle subTitle='Cargo Bar'/>
         {/* wrapper */}
-        <div className='flex gap-8 pt-3 pb-8'>
-        {props.climb.map((climb, index) => {
-          return (
-            <Card<ClimbBar> 
-              key={`${index} ${climb}`}
-              currentThing={props.currentClimb}
-              thing={climb}
-              src={`/end/climb/${climb.replace(/[A-Z]/g, ' $&').trim().toLowerCase()}.svg`} 
-              alt={climb.replace(/[A-Z]/g, ' $&').trim()}              
-              onClick={() => props.climbFunc(climb)} 
-            />
-          )
-        })}
-        </div>
+        <ScrollArea>
+          <div className='flex gap-8 pt-3 pb-8'>
+          {props.climb.map((climb, index) => {
+            return (
+              <Card<ClimbBar>
+                key={`${index} ${climb}`}
+                currentThing={props.currentClimb}
+                thing={climb}
+                src={`/end/climb/${climb.replace(/[A-Z]/g, ' $&').trim().toLowerCase()}.svg`}
+                alt={climb.replace(/[A-Z]/g, ' $&').trim()}
+                onClick={() => props.climbFunc(climb)}
+              />
+            )
+          })}
+          </div>
+        </ScrollArea>
 
         <SubTitle subTitle='Cargo RP'/>
         {/* wrapper */}
-        <div className='flex gap-8 pt-3 pb-8'>
-        {props.climbRP.map((climbRP, index) => {
-          return (
-            <Card<boolean> 
-              key={`${index} ${climbRP}`}
-              currentThing={props.currentClimbRP}
-              thing={climbRP}
-              src={`/end/${climbRP ? 'true' : 'false'}.svg`}  
-              alt={climbRP ? '1' : '0'}              
-              onClick={() => props.climbRPFunc(climbRP)} 
-            />
-          )
-        })}
-        </div>
+        <ScrollArea>
+          <div className='flex gap-8 pt-3 pb-8'>
+          {props.climbRP.map((climbRP, index) => {
+            return (
+              <Card<boolean>
+                key={`${index} ${climbRP}`}
+                currentThing={props.currentClimbRP}
+                thing={climbRP}
+                src={`/end/${climbRP ? 'true' : 'false'}.svg`}
+                alt={climbRP ? '1' : '0'}
+                onClick={() => props.climbRPFunc(climbRP)}
+              />
+            )
+          })}
+          </div>
+        </ScrollArea>
 
         <SubTitle subTitle='Win' />
         {/* wrapper */}
-        <div className='flex gap-8 pt-3 pb-8'>
-        {props.win.map((win, index) => {
-          return (
-            <Card<Win> 
-              key={`${index} ${win}`}
-              currentThing={props.currentWin}
-              thing={win}
-              src={`/end/win/${win.toLowerCase()}.svg`}  
-              alt={win}              
-              onClick={() => props.winFunc(win)} 
-            />
-          )
-        })}
-        </div>
+        <ScrollArea>
+          <div className='flex gap-8 pt-3 pb-8'>
+          {props.win.map((win, index) => {
+            return (
+              <Card<Win>
+                key={`${index} ${win}`}
+                currentThing={props.currentWin}
+                thing={win}
+                src={`/end/win/${win.toLowerCase()}.svg`}
+                alt={win}
+                onClick={() => props.winFunc(win)}
+              />
+            )
+          })}
+          </div>
+        </ScrollArea>
 
         <SubTitle subTitle='Alliance' />
         {/* wrapper */}
-        <div className='flex gap-8 pt-3 pb-8'>
-        {props.team.map((team, index) => {
-          return (
-            <Card<Team> 
-              key={`${index} ${team}`}
-              currentThing={props.currentTeam}
-              thing={team}
-              src={`/end/${team.toLowerCase()}.svg`}  
-              alt={team}              
-              onClick={() => props.teamFunc(team)} 
-            />
-          )
-        })}
-        </div>
+        <ScrollArea>
+          <div className='flex gap-8 pt-3 pb-8'>
+          {props.team.map((team, index) => {
+            return (
+              <Card<Team>
+                key={`${index} ${team}`}
+                currentThing={props.currentTeam}
+                thing={team}
+                src={`/end/${team.toLowerCase()}.svg`}
+                alt={team}
+                onClick={() => props.teamFunc(team)}
+              />
+            )
+          })}
+          </div>
+        </ScrollArea>
       </>
     </WaffleModal>
   )
