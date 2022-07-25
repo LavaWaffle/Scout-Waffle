@@ -68,66 +68,12 @@ const Layout: React.FC<props> = ({ children }) => {
           isOpen={autoOpened}
           onClose={() => setAutoOpened(false)}
           title="Auto Data"
-          launchOne={[
-            {
-              currentLaunch: autoLaunchOne,
-              launch: 'GotIn',
-              src: '/launches/got in.svg',
-              alt: 'Got In',
-              onClick: () => setAutoLaunchOne('GotIn')
-            },
-            {
-              currentLaunch: autoLaunchOne,
-              launch: 'BounceOut',
-              src: '/launches/bounce out.svg',
-              alt: 'Bounce Out',
-              onClick: () => setAutoLaunchOne('BounceOut')
-            },
-            {
-              currentLaunch: autoLaunchOne,
-              launch: 'MissClose',
-              src: '/launches/miss close.svg',
-              alt: 'Miss Close',
-              onClick: () => setAutoLaunchOne('MissClose')
-            },
-            {
-              currentLaunch: autoLaunchOne,
-              launch: 'MissFar',
-              src: '/launches/miss far.svg',
-              alt: 'Miss Far',
-              onClick: () => setAutoLaunchOne('MissFar')
-            },
-          ]}
-          launchTwo={[
-            {
-              currentLaunch: autoLaunchTwo,
-              launch: 'GotIn',
-              src: '/launches/got in.svg',
-              alt: 'Got In',
-              onClick: () => setAutoLaunchTwo('GotIn')
-            },
-            {
-              currentLaunch: autoLaunchTwo,
-              launch: 'BounceOut',
-              src: '/launches/bounce out.svg',
-              alt: 'Bounce Out',
-              onClick: () => setAutoLaunchTwo('BounceOut')
-            },
-            {
-              currentLaunch: autoLaunchTwo,
-              launch: 'MissClose',
-              src: '/launches/miss close.svg',
-              alt: 'Miss Close',
-              onClick: () => setAutoLaunchTwo('MissClose')
-            },
-            {
-              currentLaunch: autoLaunchTwo,
-              launch: 'MissFar',
-              src: '/launches/miss far.svg',
-              alt: 'Miss Far',
-              onClick: () => setAutoLaunchTwo('MissFar')
-            },
-          ]}
+          launchFuncOne={setAutoLaunchOne}
+          currentLaunchOne={autoLaunchOne}
+          launchOne={['GotIn','BounceOut','MissClose','MissFar']}
+          launchFuncTwo={setAutoLaunchTwo}
+          currentLaunchTwo={autoLaunchTwo}
+          launchTwo={['GotIn','BounceOut','MissClose','MissFar']}
         />
       </AppShell>
     </>

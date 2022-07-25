@@ -7,9 +7,12 @@ type LaunchModalProps = {
   isOpen: boolean,
   onClose: () => void,
   title: string,
-  launchOne: LaunchCardProps[],
-  launchTwo: LaunchCardProps[],
-
+  launchFuncOne: (launch: Launch) => void,
+  currentLaunchOne: Launch,
+  launchOne: Launch[],
+  launchFuncTwo: (launch: Launch) => void,
+  currentLaunchTwo: Launch,
+  launchTwo: Launch[],
 }
 
 const LaunchModal: React.FC<LaunchModalProps> = (props) => {
@@ -25,12 +28,12 @@ const LaunchModal: React.FC<LaunchModalProps> = (props) => {
       <div className='flex gap-8 pt-3 pb-8'>
         {props.launchOne.map((launch, index) => (
           <LaunchCard
-            key={`${index} ${launch.launch}`}
-            currentLaunch={launch.currentLaunch}
-            launch={launch.launch}
-            src={launch.src}
-            alt={launch.alt}
-            onClick={launch.onClick}
+            key={`${index} ${launch}`}
+            currentLaunch={props.currentLaunchOne}
+            launch={launch}
+            src={`/launches/${launch.replace(/[A-Z]/g, ' $&').trim().toLowerCase()}.svg`}
+            alt={launch.replace(/[A-Z]/g, ' $&').trim()}
+            onClick={() => props.launchFuncOne(launch)}
           />
         ))}
       </div>
@@ -39,12 +42,12 @@ const LaunchModal: React.FC<LaunchModalProps> = (props) => {
       <div className='flex gap-8 pt-3 pb-8'>
         {props.launchTwo.map((launch, index) => (
           <LaunchCard
-            key={`${index} ${launch.launch}`}
-            currentLaunch={launch.currentLaunch}
-            launch={launch.launch}
-            src={launch.src}
-            alt={launch.alt}
-            onClick={launch.onClick}
+            key={`${index} ${launch}`}
+            currentLaunch={props.currentLaunchTwo}
+            launch={launch}
+            src={`/launches/${launch.replace(/[A-Z]/g, ' $&').trim().toLowerCase()}.svg`}
+            alt={launch.replace(/[A-Z]/g, ' $&').trim()}
+            onClick={() => props.launchFuncTwo(launch)}
           />
         ))}
       </div>
@@ -83,6 +86,8 @@ type LaunchCardProps = {
   alt: string,
   onClick: () => void
 }
+
+interface LaunchCardOmitProps extends Omit<LaunchCardProps, 'src'|'alt'|'onClick'|'currentLaunch'> {}
 
 const LaunchCard: React.FC<LaunchCardProps> = (props) => {
   const theme = useMantineTheme();
