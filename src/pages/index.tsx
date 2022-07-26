@@ -65,7 +65,7 @@ const Home: NextPage = (props) => {
         launchOne={['GotIn','BounceOut','MissClose','MissFar']}
         launchFuncTwo={setAutoLaunchTwo}
         currentLaunchTwo={autoLaunchTwo}
-        launchTwo={['GotIn','BounceOut','MissClose','MissFar']}
+        launchTwo={['GotIn','BounceOut','MissClose','MissFar','NoLaunch']}
         submitButton={true}
       />
     </Container>
