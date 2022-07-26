@@ -1,4 +1,4 @@
-import { ActionIcon, Button, Group, useMantineColorScheme } from '@mantine/core';
+import { Button, useMantineColorScheme } from '@mantine/core';
 import { SunIcon, MoonIcon } from '@modulz/radix-icons';
 
 export function ColorSchemeToggle() {
@@ -7,7 +7,7 @@ export function ColorSchemeToggle() {
   return (
     <Button
       onClick={() => toggleColorScheme()}
-      className="px-2"
+      className="px-2 mt-[-0.25rem]"
       variant="outline"
       color="pink"
       sx={(theme) => ({

@@ -7,11 +7,13 @@ import LaunchModal from './LaunchModal';
 import EndModal from './EndModal';
 import { Constants } from "@/Constants";
 import UploadModal from './UploadModal';
+import { useMediaQuery } from '@mantine/hooks';
 type props = {
   children: JSX.Element
 }
 
 const Layout: React.FC<props> = ({ children }) => {
+  const isMobile = useMediaQuery('(max-width: 600px)');
   const theme = useMantineTheme();
   // game context
   const { setAutoLaunch, setGame } = useGameContext();
@@ -64,12 +66,12 @@ const Layout: React.FC<props> = ({ children }) => {
         }}
         footer={
           <Footer height={60} p="md">
-            <div className='flex items-center justify-between'>   
+            <div className='flex sm:items-center  justify-between'>   
               <ColorSchemeToggle />
               {/* middle */}
-              <Group position="center" style={{paddingLeft: "4.5rem"}}>
+              <div style={{paddingLeft: isMobile === false ? "4.5rem" : "", gap: "2rem"}} >
                 <Button 
-                  style={{marginTop: '-0.5rem'}} 
+                  style={{marginTop: '-0.25rem', marginRight: '1rem'}} 
                   variant="outline" 
                   color='pink'
                   onClick={() => setAutoOpened(!autoOpened)}
@@ -78,25 +80,25 @@ const Layout: React.FC<props> = ({ children }) => {
                 </Button>
 
                 <Button 
-                  style={{marginTop: '-0.5rem'}} 
+                  style={{marginTop: '-0.25rem'}} 
                   variant="outline" 
                   color='pink'
                   onClick={() => setEndOpened(!endOpened)}
                 >
                   End Game Data
                 </Button>
-              </Group>
+              </div>
               {/* right */}
-              <Group position='right'>
+              <div>
                 <Button 
-                    style={{marginTop: '-0.5rem'}} 
+                    style={{marginTop: '-0.25rem'}} 
                     variant="outline" 
                     color='pink'
                     onClick={() => setUploadOpened(!uploadOpened)}
                   >
                   Upload
                 </Button>
-              </Group>
+              </div>
               </div>
           </Footer>
         }
