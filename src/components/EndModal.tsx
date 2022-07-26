@@ -63,7 +63,7 @@ const EndModal: React.FC<EndModalProps> = (props) => {
           </div>
         </ScrollArea>
 
-        <SubTitle subTitle='Cargo Bar'/>
+        <SubTitle subTitle='Climb Bar'/>
         {/* wrapper */}
         <ScrollArea>
           <div className='flex gap-8 pt-3 pb-8'>
@@ -82,7 +82,7 @@ const EndModal: React.FC<EndModalProps> = (props) => {
           </div>
         </ScrollArea>
 
-        <SubTitle subTitle='Cargo RP'/>
+        <SubTitle subTitle='Climb RP'/>
         {/* wrapper */}
         <ScrollArea>
           <div className='flex gap-8 pt-3 pb-8'>
