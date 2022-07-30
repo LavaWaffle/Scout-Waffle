@@ -9,7 +9,7 @@ import "../styles/globals.css";
 import { GetServerSidePropsContext } from 'next';
 import { AppProps } from 'next/app';
 import { getCookie, setCookies } from 'cookies-next';
-import { MantineProvider, ColorScheme, ColorSchemeProvider, useMantineColorScheme } from '@mantine/core';
+import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 
@@ -45,7 +45,7 @@ const MyApp = (props: AppProps & { colorScheme: ColorScheme }) => {
       </Head>
       <ColorSchemeProvider colorScheme={localColorScheme} toggleColorScheme={toggleColorScheme}>
         <MantineProvider theme={{ colorScheme: localColorScheme }} withGlobalStyles withNormalizeCSS>
-          <NotificationsProvider>
+          <NotificationsProvider position="top-right">
             <GameContextProvider>
 
               <Layout>

@@ -15,33 +15,30 @@
 // generate cmd (update ts imporst)
 // 		pnpx prisma generate
 generator client {
-  provider = "prisma-client-js"
-  // output   = "../src/server/db/generated/prisma-client-ts"
+  provider        = "prisma-client-js"
+  output   = "../src/server/db/generated/prisma-client-ts"
   previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
   referentialIntegrity = "prisma"
 }
 
 model Game {
-  id         String      @id @default(cuid())
-  name       String
-  tournament String
-  // auto
-  autoBalls  AutoLaunch?
-  // teleop
-  markers    Marker[]
+  id            String         @id @default(cuid()) @unique
+  name          String
+  tournament    String
+  // any points scored
+  markers       Points[]
   // endgame
-  cargoRP    Int
-  climbBar   ClimbBar
-  climbRP    Int
-  weWin      Win
-  ourTeam    Team
+  rankingPoints RankingPoint[]
+  weWin         Win
+  ourTeam       Team
 
   // meta data
+  version   Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -49,42 +46,67 @@ model Game {
   @@map(name: "game")
 }
 
-// auto model
-model AutoLaunch {
-  id        String @id @unique @default(cuid())
-  launchOne Launch
-  launchTwo Launch
-  game      Game   @relation(fields: [gameId], references: [id])
-  gameId    String @unique
-
-  @@map(name: "auto_launch")
-}
-
 // teleop model
-model Marker {
-  id        String @id @default(cuid())
+model Points {
+  id     String  @id @default(cuid()) @unique
+  // isAuto
+  isAuto Boolean
+
+  pointType  String
+  pointValue Int
+
   // position in the game
-  left      Float
-  top       Float
+  left     Float?
+  top      Float?
   // launch data
-  launchOne Launch
-  launchTwo Launch
+  launches Launch[]
 
   // relation data
   Game   Game?   @relation(fields: [gameId], references: [id])
   gameId String?
 
   // name in the database
-  @@map(name: "marker")
+  @@map(name: "points")
+}
+
+// teleop launch
+model Launch {
+  id   String       @id @default(cuid()) @unique
+  type LaunchStatus
+
+  // relation data
+  Marker   Points @relation(fields: [markerId], references: [id])
+  markerId String 
+
+  // name in the database
+  @@map(name: "launch")
 }
 
 // teleop enum
-enum Launch {
-  GotIn
+enum LaunchStatus {
+  GotInUpper
+  GotInLower
   BounceOut
   MissClose
   MissFar
   NoLaunch
+
+  @@map("launchStatus")
+}
+
+// endgame model
+model RankingPoint {
+  id          String @id @default(cuid()) @unique
+  type        String
+  numberScore Int
+  minScore    Int
+  maxScore    Int
+
+  // relation data
+  Game   Game   @relation(fields: [gameId], references: [id])
+  gameId String
+
+  @@map(name: "rankingPoint")
 }
 
 // endgame enums
@@ -97,12 +119,4 @@ enum Win {
   Win
   Lose
   Tie
-}
-
-enum ClimbBar {
-  NoClimb
-  Low
-  Middle
-  High
-  Traversal
 }

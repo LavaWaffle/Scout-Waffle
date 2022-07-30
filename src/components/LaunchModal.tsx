@@ -1,18 +1,18 @@
 import React from 'react'
 import WaffleModal from './WaffleModal'
 import { Text, Image, useMantineTheme, Group, Button, ScrollArea } from "@mantine/core"
-import { Launch } from '@prisma/client'
+import type { LaunchStatus } from '@prisma/client'
 
 type LaunchModalProps = {
   isOpen: boolean,
   onClose: () => void,
   title: string,
-  launchFuncOne: (launch: Launch) => void,
-  currentLaunchOne: Launch,
-  launchOne: Launch[],
-  launchFuncTwo: (launch: Launch) => void,
-  currentLaunchTwo: Launch,
-  launchTwo: Launch[],
+  launchFuncOne: (launch: LaunchStatus) => void,
+  currentLaunchOne: LaunchStatus,
+  launchOne: LaunchStatus[],
+  launchFuncTwo: (launch: LaunchStatus) => void,
+  currentLaunchTwo: LaunchStatus,
+  launchTwo: LaunchStatus[],
   submitButton: boolean,
 }
 
@@ -91,8 +91,8 @@ export const SubTitle: React.FC<SubTitleProps> = (props) => {
 }
 
 type LaunchCardProps = {
-  currentLaunch: Launch,
-  launch: Launch,
+  currentLaunch: LaunchStatus,
+  launch: LaunchStatus,
   src: string,
   alt: string,
   onClick: () => void

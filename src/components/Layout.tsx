@@ -1,13 +1,17 @@
-import { AppShell, Footer, useMantineTheme, Group, Button } from '@mantine/core';
-import React, { useEffect, useState } from 'react'
-import { useGameContext } from '@/context/GameContext';
+import { AppShell, Footer, useMantineTheme, Button } from '@mantine/core';
+import React, { useState } from 'react'
+import { useGameContext, Points, ClimbBar } from '@/context/GameContext';
 import { ColorSchemeToggle } from './ColorSchemeToggle';
-import type { Launch, ClimbBar, Win, Team } from '@prisma/client';
+import type { LaunchStatus, Win, Team } from '@prisma/client';
 import LaunchModal from './LaunchModal';
 import EndModal from './EndModal';
 import { Constants } from "@/Constants";
 import UploadModal from './UploadModal';
 import { useMediaQuery } from '@mantine/hooks';
+import { calculateLaunchPointValue } from '@/utils/calculateLaunchPointValue';
+import calculateClimbPointValue from '@/utils/calculateClimbPointValue';
+import { showNotification } from '@mantine/notifications';
+import { IconCheck } from '@tabler/icons';
 type props = {
   children: JSX.Element
 }
@@ -16,20 +20,41 @@ const Layout: React.FC<props> = ({ children }) => {
   const isMobile = useMediaQuery('(max-width: 600px)');
   const theme = useMantineTheme();
   // game context
-  const { setAutoLaunch, setGame } = useGameContext();
+  const { setGameProperties, appendMarkers, appendRankingPoints } = useGameContext();
   // auto state 
   const [autoOpened, setAutoOpened] = useState<boolean>(false);
-  const [autoLaunchOne, setAutoLaunchOne] = useState<Launch>('GotIn');
-  const [autoLaunchTwo, setAutoLaunchTwo] = useState<Launch>('GotIn');
+  const [autoLaunchOne, setAutoLaunchOne] = useState<LaunchStatus>('GotInUpper');
+  const [autoLaunchTwo, setAutoLaunchTwo] = useState<LaunchStatus>('GotInUpper');
 
-  // run function every time autoLaunchOne or autoLaunchTwo changes 
-  useEffect(() => {
-    // update game context with autoLaunchOne and autoLaunchTwo
-    setAutoLaunch({
-      launchOne: autoLaunchOne,
-      launchTwo: autoLaunchTwo
-    })
-  }, [autoLaunchOne, autoLaunchTwo]);
+  function handleAutoClose() {
+    // close modal
+    setAutoOpened(false);
+
+    // create points from auto data
+    const points: Points = {
+      isAuto: true,
+      pointType: Constants.LAUNCH_POINT_TYPE,
+      pointValue: calculateLaunchPointValue(autoLaunchOne, autoLaunchTwo),
+      launches: {
+        create: [
+          {
+            type: autoLaunchOne,
+          },
+          {
+            type: autoLaunchTwo,
+          },
+        ]
+      }
+    }
+
+    // append points to context
+    appendMarkers(points);
+
+    // reset modal launch states
+    setAutoLaunchOne('GotInUpper');
+    setAutoLaunchTwo('GotInUpper');
+  }
+ 
   
   // end game state
   const [endOpened, setEndOpened] = useState<boolean>(false);
@@ -43,18 +68,65 @@ const Layout: React.FC<props> = ({ children }) => {
   // upload state
   const [uploadOpened, setUploadOpened] = useState<boolean>(false);
 
-  useEffect(() => {
-    // update game context with end state
-    setGame({
-      name: endTitle,
-      tournament: Constants.TOURNAMENT_NAME,
-      cargoRP: cargoRP ? 1 : 0,
-      climbBar: climbBar,
-      climbRP: climbRP ? 1 : 0,
-      weWin: win,
-      ourTeam: ourTeam
-    })
-  }, [endOpened, cargoRP, climbBar, climbRP, win, ourTeam]);
+  function handleEndClose() {
+    // close modal
+    setEndOpened(false);
+
+    // append ranking points
+    // cargo
+    appendRankingPoints([
+      {
+        type: Constants.CARGO_RP_TYPE,
+        maxScore: Constants.CARGO_RP_MAX_SCORE,
+        minScore: Constants.CARGO_RP_MIN_SCORE,
+        numberScore: cargoRP ? 1 : 0,
+      },
+      {
+        type: Constants.CLIMB_RP_TYPE,
+        maxScore: Constants.CLIMB_RP_MAX_SCORE,
+        minScore: Constants.CLIMB_RP_MIN_SCORE,
+        numberScore: climbRP ? 1 : 0,
+      }
+    ]);
+    
+
+    // create points 
+    const points: Points = {
+      isAuto: false,
+      pointType: Constants.CLIMB_POINT_TYPE,
+      pointValue: calculateClimbPointValue(climbBar),
+      launches: {
+        create: [],
+      }
+    }
+    // append points to context
+    setTimeout(() => {
+      appendMarkers(points);
+      showNotification({
+        title: 'Climb Points',
+        message: 'Climb Points added to ranking points',
+        color: 'green',
+        icon: <IconCheck />,
+      });
+    }, 1000);
+    
+
+    // set game properties
+    setTimeout(() => {
+      setGameProperties({
+        name: endTitle,
+        ourTeam,
+        weWin: win,
+      });
+      showNotification({
+        title: 'Set Game Properties',
+        message: `name: ${endTitle}, ourTeam: ${ourTeam}, weWin: ${win}`,
+        color: 'green',
+        icon: <IconCheck />,
+      });
+    }, 2000)
+    
+  }
 
   return (
     <>
@@ -108,19 +180,19 @@ const Layout: React.FC<props> = ({ children }) => {
         </main>
         <LaunchModal 
           isOpen={autoOpened}
-          onClose={() => setAutoOpened(false)}
+          onClose={handleAutoClose}
           title="Auto Data"
           launchFuncOne={setAutoLaunchOne}
           currentLaunchOne={autoLaunchOne}
-          launchOne={['GotIn','BounceOut','MissClose','MissFar']}
+          launchOne={['GotInUpper','GotInLower','BounceOut','MissClose','MissFar']}
           launchFuncTwo={setAutoLaunchTwo}
           currentLaunchTwo={autoLaunchTwo}
-          launchTwo={['GotIn','BounceOut','MissClose','MissFar']}
-          submitButton={false}
+          launchTwo={['GotInUpper','GotInLower','BounceOut','MissClose','MissFar','NoLaunch']}
+          submitButton={true}
         />
         <EndModal 
           isOpen={endOpened}
-          onClose={() => setEndOpened(false)}
+          onClose={handleEndClose}
           title="End Game Data" 
           gameName={endTitle}
           gameNameFunc={setEndTitle}
@@ -139,6 +211,7 @@ const Layout: React.FC<props> = ({ children }) => {
           teamFunc={setOurTeam}
           currentTeam={ourTeam}
           team={['Blue','Red']}
+          submitButton={true}
         />
         <UploadModal 
           isOpen={uploadOpened}

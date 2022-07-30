@@ -1,7 +1,9 @@
 import LaunchModal from "@/components/LaunchModal";
-import { useGameContext } from "@/context/GameContext";
+import { Constants } from "@/Constants";
+import { useGameContext, Points } from "@/context/GameContext";
+import { calculateLaunchPointValue } from "@/utils/calculateLaunchPointValue";
 import { Container } from "@mantine/core";
-import { Launch } from "@prisma/client";
+import type { LaunchStatus } from "@prisma/client";
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
 import ImageMarker, { Marker } from "react-image-marker"
@@ -13,39 +15,49 @@ const Home: NextPage = (props) => {
   }
 
   const [launchModal, setLaunchModal] = useState<boolean>(false);
-  const [autoLaunchOne, setAutoLaunchOne] = useState<Launch>('GotIn');
-  const [autoLaunchTwo, setAutoLaunchTwo] = useState<Launch>('GotIn');
+  const [launchOne, setLaunchOne] = useState<LaunchStatus>('GotInUpper');
+  const [launchTwo, setLaunchTwo] = useState<LaunchStatus>('GotInUpper');
   useEffect(() => {
     setTimeout(() => {
       if (markers.length !== 0) setLaunchModal(true);
     }, 50);
   }, [markers]);
   
-  const { getMarkers: getGlobalMarkers, setMarkers: setGlobalMarkers } = useGameContext();
+  const { appendMarkers } = useGameContext();
 
   function handleClose() {
+    // close modal
     setLaunchModal(false);
-    setAutoLaunchOne('GotIn');
-    setAutoLaunchTwo('GotIn');
+    
+    // get latest marker
     const latestMarker = markers[markers.length - 1];
+    // if latest marker is undefined, return
     if (latestMarker?.top === undefined && latestMarker?.left === undefined) return;
     
-    const globalMarkers = getGlobalMarkers();
-    if (globalMarkers?.length !== 0 && globalMarkers !== undefined) {
-      setGlobalMarkers([...globalMarkers, {
-        top: latestMarker.top.valueOf(),
-        left: latestMarker.left.valueOf(),
-        launchOne: autoLaunchOne,
-        launchTwo: autoLaunchTwo
-      }]);
-    } else {
-      setGlobalMarkers([{
-        top: latestMarker.top.valueOf(),
-        left: latestMarker.left.valueOf(),
-        launchOne: autoLaunchOne,
-        launchTwo: autoLaunchTwo
-      }]);
+    // create points from latest marker
+    const points: Points = {
+      isAuto: false,
+      pointType: Constants.LAUNCH_POINT_TYPE,
+      pointValue: calculateLaunchPointValue(launchOne, launchTwo),
+      top: latestMarker.top.valueOf(),
+      left: latestMarker.left.valueOf(),
+      launches: {
+        create: [
+          {
+            type: launchOne,
+          },
+          {
+            type: launchTwo,
+          },
+        ]
+      }
     }
+    // append points to context
+    appendMarkers(points);
+
+    // reset modal launch states
+    setLaunchOne('GotInUpper');
+    setLaunchTwo('GotInUpper');
   }
 
   return (
@@ -60,12 +72,12 @@ const Home: NextPage = (props) => {
         isOpen={launchModal}
         onClose={handleClose}
         title="Launch Data"
-        launchFuncOne={setAutoLaunchOne}
-        currentLaunchOne={autoLaunchOne}
-        launchOne={['GotIn','BounceOut','MissClose','MissFar']}
-        launchFuncTwo={setAutoLaunchTwo}
-        currentLaunchTwo={autoLaunchTwo}
-        launchTwo={['GotIn','BounceOut','MissClose','MissFar','NoLaunch']}
+        launchFuncOne={setLaunchOne}
+        currentLaunchOne={launchOne}
+        launchOne={['GotInUpper','GotInLower','BounceOut','MissClose','MissFar']}
+        launchFuncTwo={setLaunchTwo}
+        currentLaunchTwo={launchTwo}
+        launchTwo={['GotInUpper','GotInLower','BounceOut','MissClose','MissFar','NoLaunch']}
         submitButton={true}
       />
     </Container>

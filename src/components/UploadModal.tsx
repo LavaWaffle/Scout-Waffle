@@ -9,12 +9,10 @@ type UploadModalProps = {
 }
 
 const UploadModal: React.FC<UploadModalProps> = (props) => {
-  const { getAuto, getGame, getMarkers } = useGameContext();
+  const { getGame } = useGameContext();
 
-  function handleSumbit() {
-    console.log(getAuto());
+  function handleSubmit() {
     console.log(getGame());
-    console.log(getMarkers());
   }
 
   return <WaffleModal
@@ -30,8 +28,8 @@ const UploadModal: React.FC<UploadModalProps> = (props) => {
         Make sure you have the correct info and are connected to the internet
       </Text>
       <Group position="center" className="pt-2">
-        <Button size="xl" variant="outline" color="pink" onClick={handleSumbit}>
-          Sumbit
+        <Button size="xl" variant="outline" color="pink" onClick={handleSubmit}>
+          Submit
         </Button>
       </Group>
     </div>

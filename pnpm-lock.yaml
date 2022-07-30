@@ -16,7 +16,8 @@ specifiers:
   '@mantine/rte': ^5.0.0
   '@mantine/spotlight': ^5.0.0
   '@modulz/radix-icons': ^4.0.0
-  '@prisma/client': ^4.1.0
+  '@prisma/client': 4.1.1
+  '@tabler/icons': ^1.78.1
   '@trpc/client': ^9.26.2
   '@trpc/next': ^9.26.2
   '@trpc/react': ^9.26.2
@@ -32,7 +33,7 @@ specifiers:
   eslint-config-next: 12.2.1
   next: 12.2.1
   postcss: ^8.4.14
-  prisma: ^4.1.0
+  prisma: 4.1.0
   react: 18.2.0
   react-dom: 18.2.0
   react-image-marker: ^1.2.0
@@ -58,7 +59,8 @@ dependencies:
   '@mantine/rte': 5.0.0_2ppm4dxv545wtv3onrl7ubqcf4
   '@mantine/spotlight': 5.0.0_2ppm4dxv545wtv3onrl7ubqcf4
   '@modulz/radix-icons': 4.0.0_react@18.2.0
-  '@prisma/client': 4.1.0_prisma@4.1.0
+  '@prisma/client': 4.1.1_prisma@4.1.0
+  '@tabler/icons': 1.78.1_biqbaboplfbrettd7655fr4n2y
   '@trpc/client': 9.26.2_@trpc+server@9.26.2
   '@trpc/next': 9.26.2_h3zgstsgkj4vide7rq3ntt2w3e
   '@trpc/react': 9.26.2_4zadt2mtfbx7275mbcwrjz2noe
@@ -67,6 +69,7 @@ dependencies:
   dayjs: 1.11.4
   embla-carousel-react: 7.0.0-rc05_react@18.2.0
   next: 12.2.1_biqbaboplfbrettd7655fr4n2y
+  prisma: 4.1.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-image-marker: 1.2.0_biqbaboplfbrettd7655fr4n2y
@@ -82,7 +85,6 @@ devDependencies:
   eslint: 8.18.0
   eslint-config-next: 12.2.1_b5e7v2qnwxfo6hmiq56u52mz3e
   postcss: 8.4.14
-  prisma: 4.1.0
   tailwindcss: 3.1.6
   typescript: 4.7.4
 
@@ -783,8 +785,8 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@prisma/client/4.1.0_prisma@4.1.0:
-    resolution: {integrity: sha512-MvfPGAd42vHTiCYxwS6N+2U3F+ukoJ48D2QRnX1zSPJHBkh1CBtshl75daKzvVfgQwSouzSQeugKDej5di+E/g==}
+  /@prisma/client/4.1.1_prisma@4.1.0:
+    resolution: {integrity: sha512-2pXuIUYxHv5H9o6QTa1VIsl4yMgsAjKQOitlo8WVTB+vo73rmMJITBPavdGUZSWUc7adMkFzEV3y5rVTUQr77Q==}
     engines: {node: '>=14.17'}
     requiresBuild: true
     peerDependencies:
@@ -804,7 +806,7 @@ packages:
   /@prisma/engines/4.1.0:
     resolution: {integrity: sha512-quqHXD3P83NBLVtRlts4SgKHmqgA8GMiyDTJ7af03Wg0gl6F5t65mBYvIuwmD+52vHm42JtIsp/fAO9YIV0JBA==}
     requiresBuild: true
-    dev: true
+    dev: false
 
   /@radix-ui/number/1.0.0:
     resolution: {integrity: sha512-Ofwh/1HX69ZfJRiRBMTy7rgjAzHmwe4kW9C9Y99HTRUcYLUuVT0KESFj15rPjRgKJs20GPq8Bm5aEDJ8DuA3vA==}
@@ -2882,7 +2884,7 @@ packages:
     requiresBuild: true
     dependencies:
       '@prisma/engines': 4.1.0
-    dev: true
+    dev: false
 
   /process-nextick-args/2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}

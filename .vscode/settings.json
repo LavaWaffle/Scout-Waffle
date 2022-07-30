@@ -7,7 +7,11 @@
     "Mantine",
     "pnpm",
     "pnpx",
-    "pscale"
+    "pscale",
+    "superjson",
+    "tabler",
+    "teleop",
+    "TRPC"
   ],
   "deepscan.enable": true
 }

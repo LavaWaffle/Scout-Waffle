@@ -20,29 +20,59 @@ export const exampleRouter = createRouter()
         data: {
           name: "test",
           tournament: "riot",
-          cargoRP: 0,
-          ourTeam: 'Blue',
-          weWin: 'Tie',
-          createdAt: new Date(),
-          updatedAt: new Date(),
           markers: {
             create: [
               {
-                top: 0,
+                isAuto: true,
+                pointType: "auto",
+                pointValue: 1,
                 left: 0,
-                launchOne: 'GotIn',
-                launchTwo: 'GotIn',
+                top: 0,
+                launches: {
+                  create: [
+                    {
+                      type: "GotInLower",
+                    }
+                  ]
+                }
+              },
+              {
+                isAuto: false,
+                pointType: "teleop",
+                pointValue: 2,
+                left: 2,
+                top: 2,
+                launches: {
+                  create: [
+                    {
+                      type: "GotInLower"
+                    },
+                    {
+                      type: "GotInLower"
+                    }
+                  ]
+                }
               }
             ]
           },
-          climbBar: "Low",
-          climbRP: 0,
-          autoBalls: {
-            create: {
-              launchOne: 'BounceOut',
-              launchTwo: 'BounceOut',
-            }
-          }
+          rankingPoints: {
+            create: [
+              {
+                type: "Climb",
+                numberScore: 1,
+                maxScore: 1,
+                minScore: 0,
+              },
+              {
+                type: "Cargo",
+                numberScore: 1,
+                maxScore: 1,
+                minScore: 0,
+              }
+            ]
+          },
+          weWin: "Win",
+          ourTeam: "Blue",
         }
       })
     },

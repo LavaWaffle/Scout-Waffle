@@ -1,8 +1,9 @@
-import { useMantineTheme, Group, Text, Image, TextInput, ScrollArea } from '@mantine/core'
+import { useMantineTheme, Group, Text, Image, TextInput, ScrollArea, Button } from '@mantine/core'
 import React from 'react'
 import { SubTitle } from './LaunchModal'
 import WaffleModal from './WaffleModal'
-import type { ClimbBar, Win, Team } from '@prisma/client';
+import type { Win, Team } from '@prisma/client';
+import type { ClimbBar } from '@/context/GameContext';
 
 type EndModalProps = {
   isOpen: boolean,
@@ -25,6 +26,7 @@ type EndModalProps = {
   teamFunc: (team: Team) => void,
   currentTeam: Team,
   team: Team[],
+  submitButton: boolean,
 }
 
 const EndModal: React.FC<EndModalProps> = (props) => {
@@ -138,6 +140,12 @@ const EndModal: React.FC<EndModalProps> = (props) => {
           })}
           </div>
         </ScrollArea>
+        {/* submit button */}
+        {props.submitButton && (
+          <Group position='center'>
+            <Button variant="outline" color="pink" size="md" onClick={props.onClose}>Submit</Button>
+          </Group>
+        )}
       </>
     </WaffleModal>
   )
