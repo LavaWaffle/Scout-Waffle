@@ -33,7 +33,7 @@ specifiers:
   eslint-config-next: 12.2.1
   next: 12.2.1
   postcss: ^8.4.14
-  prisma: 4.1.1
+  prisma: 4.1.0
   react: 18.2.0
   react-dom: 18.2.0
   react-image-marker: ^1.2.0
@@ -59,7 +59,7 @@ dependencies:
   '@mantine/rte': 5.0.0_2ppm4dxv545wtv3onrl7ubqcf4
   '@mantine/spotlight': 5.0.0_2ppm4dxv545wtv3onrl7ubqcf4
   '@modulz/radix-icons': 4.0.0_react@18.2.0
-  '@prisma/client': 4.1.1_prisma@4.1.1
+  '@prisma/client': 4.1.1_prisma@4.1.0
   '@tabler/icons': 1.78.1_biqbaboplfbrettd7655fr4n2y
   '@trpc/client': 9.26.2_@trpc+server@9.26.2
   '@trpc/next': 9.26.2_h3zgstsgkj4vide7rq3ntt2w3e
@@ -69,7 +69,7 @@ dependencies:
   dayjs: 1.11.4
   embla-carousel-react: 7.0.0-rc05_react@18.2.0
   next: 12.2.1_biqbaboplfbrettd7655fr4n2y
-  prisma: 4.1.1
+  prisma: 4.1.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-image-marker: 1.2.0_biqbaboplfbrettd7655fr4n2y
@@ -785,7 +785,7 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@prisma/client/4.1.1_prisma@4.1.1:
+  /@prisma/client/4.1.1_prisma@4.1.0:
     resolution: {integrity: sha512-2pXuIUYxHv5H9o6QTa1VIsl4yMgsAjKQOitlo8WVTB+vo73rmMJITBPavdGUZSWUc7adMkFzEV3y5rVTUQr77Q==}
     engines: {node: '>=14.17'}
     requiresBuild: true
@@ -796,15 +796,15 @@ packages:
         optional: true
     dependencies:
       '@prisma/engines-version': 4.1.0-48.8d8414deb360336e4698a65aa45a1fbaf1ce13d8
-      prisma: 4.1.1
+      prisma: 4.1.0
     dev: false
 
   /@prisma/engines-version/4.1.0-48.8d8414deb360336e4698a65aa45a1fbaf1ce13d8:
     resolution: {integrity: sha512-cRRJwpHFGFJZvtHbY3GZjMffNBEjjZk68ztn+S2hDgPCGB4H66IK26roK94GJxBodSehwRJ0wGyebC2GoIH1JQ==}
     dev: false
 
-  /@prisma/engines/4.1.1:
-    resolution: {integrity: sha512-DCw8L/SS0IXqmj5IW/fMxOXiifnsfjBzDfRhf0j3NFWqvMCh9OtfjmXQZxVgI2mwvJLc/5jzXhkiWT39qS09dA==}
+  /@prisma/engines/4.1.0:
+    resolution: {integrity: sha512-quqHXD3P83NBLVtRlts4SgKHmqgA8GMiyDTJ7af03Wg0gl6F5t65mBYvIuwmD+52vHm42JtIsp/fAO9YIV0JBA==}
     requiresBuild: true
     dev: false
 
@@ -2877,13 +2877,13 @@ packages:
       react: 18.2.0
     dev: false
 
-  /prisma/4.1.1:
-    resolution: {integrity: sha512-yw50J8If2dKP4wYIi695zthsCASQFHiogGvUHHWd3falx/rpsD6Sb1LMLRV9nO3iGG3lozxNJ2PSINxK7xwdpg==}
+  /prisma/4.1.0:
+    resolution: {integrity: sha512-iwqpAT6In1uvMSwQAM3PqmaBdhh2OaQ/2t+n3RjpW4vAKP3R7E1T34FZUU4zGOWtMWm5dt0sPThQkT/h87r6gw==}
     engines: {node: '>=14.17'}
     hasBin: true
     requiresBuild: true
     dependencies:
-      '@prisma/engines': 4.1.1
+      '@prisma/engines': 4.1.0
     dev: false
 
   /process-nextick-args/2.0.1:

@@ -35,7 +35,7 @@
     "dayjs": "^1.11.4",
     "embla-carousel-react": "7.0.0-rc05",
     "next": "12.2.1",
-    "prisma": "4.1.1",
+    "prisma": "4.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-image-marker": "^1.2.0",
