@@ -14,7 +14,4 @@ function defineNextConfig(config) {
 
 export default defineNextConfig({
   reactStrictMode: true,
-  eslint: {
-    ignoreDuringBuilds: true,
-  }
 });
