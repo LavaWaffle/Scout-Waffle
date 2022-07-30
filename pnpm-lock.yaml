@@ -16,7 +16,7 @@ specifiers:
   '@mantine/rte': ^5.0.0
   '@mantine/spotlight': ^5.0.0
   '@modulz/radix-icons': ^4.0.0
-  '@prisma/client': 4.1.1
+  '@prisma/client': 4.1.0
   '@tabler/icons': ^1.78.1
   '@trpc/client': ^9.26.2
   '@trpc/next': ^9.26.2
@@ -59,7 +59,7 @@ dependencies:
   '@mantine/rte': 5.0.0_2ppm4dxv545wtv3onrl7ubqcf4
   '@mantine/spotlight': 5.0.0_2ppm4dxv545wtv3onrl7ubqcf4
   '@modulz/radix-icons': 4.0.0_react@18.2.0
-  '@prisma/client': 4.1.1_prisma@4.1.0
+  '@prisma/client': 4.1.0_prisma@4.1.0
   '@tabler/icons': 1.78.1_biqbaboplfbrettd7655fr4n2y
   '@trpc/client': 9.26.2_@trpc+server@9.26.2
   '@trpc/next': 9.26.2_h3zgstsgkj4vide7rq3ntt2w3e
@@ -785,8 +785,8 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@prisma/client/4.1.1_prisma@4.1.0:
-    resolution: {integrity: sha512-2pXuIUYxHv5H9o6QTa1VIsl4yMgsAjKQOitlo8WVTB+vo73rmMJITBPavdGUZSWUc7adMkFzEV3y5rVTUQr77Q==}
+  /@prisma/client/4.1.0_prisma@4.1.0:
+    resolution: {integrity: sha512-MvfPGAd42vHTiCYxwS6N+2U3F+ukoJ48D2QRnX1zSPJHBkh1CBtshl75daKzvVfgQwSouzSQeugKDej5di+E/g==}
     engines: {node: '>=14.17'}
     requiresBuild: true
     peerDependencies:

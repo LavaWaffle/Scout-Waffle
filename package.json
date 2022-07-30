@@ -25,7 +25,7 @@
     "@mantine/rte": "^5.0.0",
     "@mantine/spotlight": "^5.0.0",
     "@modulz/radix-icons": "^4.0.0",
-    "@prisma/client": "4.1.1",
+    "@prisma/client": "4.1.0",
     "@tabler/icons": "^1.78.1",
     "@trpc/client": "^9.26.2",
     "@trpc/next": "^9.26.2",
