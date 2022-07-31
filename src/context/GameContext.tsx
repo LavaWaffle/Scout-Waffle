@@ -12,7 +12,7 @@ export type Points = PointsInt & {
 }
 interface Launch extends Omit<launch, 'id'|'markerId'> {}
 interface GameInt extends Omit<game, 'id'|'createdAt'|'updatedAt'|'version'> {}
-type Game = GameInt & {
+export type Game = GameInt & {
   markers: { create: Points[] };
   rankingPoints: { create: RankingPoint[] };
 }
@@ -27,6 +27,7 @@ type GameContextProviderProps = {
 type ShoppingCartContext = {
   getGame: () => Game | undefined,
   setGameProperties: (properties: Partial<Game>) => void,
+  resetGame: () => void,
   appendRankingPoints: (value: RankingPoint[]) => void,
   getRankingPoints: () => RankingPoint[],
   appendMarkers: (value: Points) => void,
@@ -74,6 +75,10 @@ export function GameContextProvider({ children }: GameContextProviderProps) {
         }
       }
     });
+  }
+
+  function resetGame() {
+    setGame(undefined);
   }
 
   function getRankingPoints() {
@@ -134,6 +139,7 @@ export function GameContextProvider({ children }: GameContextProviderProps) {
     <GameContext.Provider value={{
       getGame,
       setGameProperties,
+      resetGame,
       appendRankingPoints,
       getRankingPoints,
       appendMarkers,

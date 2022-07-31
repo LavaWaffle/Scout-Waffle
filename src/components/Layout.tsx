@@ -13,7 +13,7 @@ import calculateClimbPointValue from '@/utils/calculateClimbPointValue';
 import { showNotification } from '@mantine/notifications';
 import { IconCheck } from '@tabler/icons';
 type props = {
-  children: JSX.Element
+  children: JSX.Element,
 }
 
 const Layout: React.FC<props> = ({ children }) => {

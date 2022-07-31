@@ -10,13 +10,14 @@ import { GetServerSidePropsContext } from 'next';
 import { AppProps } from 'next/app';
 import { getCookie, setCookies } from 'cookies-next';
 import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
-import { NotificationsProvider } from '@mantine/notifications';
+import { NotificationsProvider, showNotification } from '@mantine/notifications';
 import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 
 // component imports
 import Head from 'next/head';
 import Layout from "@/components/Layout";
-import { GameContextProvider } from "@/context/GameContext";
+import { GameContextProvider, useGameContext } from "@/context/GameContext";
+import { IconCheck, IconX } from "@tabler/icons";
 
 const MyApp = (props: AppProps & { colorScheme: ColorScheme }) => {
   const { Component, pageProps } = props;

@@ -1,7 +1,7 @@
-import { useGameContext } from "@/context/GameContext"
 import { Button, Group, Kbd, Text } from "@mantine/core"
-import React from "react"
-import WaffleModal from "./WaffleModal"
+import React from "react";
+import WaffleModal from "./WaffleModal";
+import router from "next/router";
 
 type UploadModalProps = {
   isOpen: boolean,
@@ -9,12 +9,11 @@ type UploadModalProps = {
 }
 
 const UploadModal: React.FC<UploadModalProps> = (props) => {
-  const { getGame } = useGameContext();
-
   function handleSubmit() {
-    console.log(getGame());
+    props.onClose();
+    router.push('/push');
   }
-
+  
   return <WaffleModal
     isOpen={props.isOpen}
     onClose={props.onClose}
