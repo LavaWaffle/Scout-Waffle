@@ -27,8 +27,8 @@ datasource db {
 }
 
 model Game {
-  id            String         @id @default(cuid()) @unique
-  name          String
+  id            String         @id @unique @default(cuid())
+  name          String         @unique
   tournament    String
   // any points scored
   markers       Points[]
@@ -48,7 +48,7 @@ model Game {
 
 // teleop model
 model Points {
-  id     String  @id @default(cuid()) @unique
+  id     String  @id @unique @default(cuid())
   // isAuto
   isAuto Boolean
 
@@ -71,12 +71,12 @@ model Points {
 
 // teleop launch
 model Launch {
-  id   String       @id @default(cuid()) @unique
+  id   String       @id @unique @default(cuid())
   type LaunchStatus
 
   // relation data
   Marker   Points @relation(fields: [markerId], references: [id])
-  markerId String 
+  markerId String
 
   // name in the database
   @@map(name: "launch")
@@ -96,7 +96,7 @@ enum LaunchStatus {
 
 // endgame model
 model RankingPoint {
-  id          String @id @default(cuid()) @unique
+  id          String @id @unique @default(cuid())
   type        String
   numberScore Int
   minScore    Int
