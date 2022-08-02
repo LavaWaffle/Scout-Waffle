@@ -38,7 +38,7 @@ const Home: NextPage = (props) => {
     const points: Points = {
       isAuto: false,
       pointType: Constants.LAUNCH_POINT_TYPE,
-      pointValue: calculateLaunchPointValue(launchOne, launchTwo),
+      pointValue: calculateLaunchPointValue([launchOne, launchTwo]),
       top: latestMarker.top.valueOf(),
       left: latestMarker.left.valueOf(),
       launches: {

@@ -34,7 +34,7 @@ const Layout: React.FC<props> = ({ children }) => {
     const points: Points = {
       isAuto: true,
       pointType: Constants.LAUNCH_POINT_TYPE,
-      pointValue: calculateLaunchPointValue(autoLaunchOne, autoLaunchTwo),
+      pointValue: calculateLaunchPointValue([autoLaunchOne, autoLaunchTwo]),
       launches: {
         create: [
           {
