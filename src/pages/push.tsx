@@ -29,8 +29,8 @@ const Push: NextPage = () => {
     >Return To Home</Button>
   </Container>
 
-    const { isLoading, error } = trpc.useQuery(['scout.push', { ...game }])
-    
+    const { isLoading, error, mutate } = trpc.useMutation('scout.push');  
+    mutate(game);
     if (error) return <div>Error: {error.message}</div>
 
     if (isLoading) return <div>Loading...</div>

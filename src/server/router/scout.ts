@@ -2,7 +2,7 @@ import { createRouter } from "./context";
 import { z } from "zod";
 
 export const scoutRouter = createRouter()
-  .query("push", {
+  .mutation("push", {
     input: z.object({
       name: z.string(),
       tournament: z.string(),
