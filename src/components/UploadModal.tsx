@@ -2,6 +2,10 @@ import { Button, Group, Kbd, Text } from "@mantine/core"
 import React from "react";
 import WaffleModal from "./WaffleModal";
 import router from "next/router";
+import { trpc } from "@/utils/trpc";
+import { useGameContext } from "@/context/GameContext";
+import { showNotification } from "@mantine/notifications";
+import { IconCheck, IconX } from "@tabler/icons";
 
 type UploadModalProps = {
   isOpen: boolean,
@@ -9,10 +13,33 @@ type UploadModalProps = {
 }
 
 const UploadModal: React.FC<UploadModalProps> = (props) => {
+  const { getGame } = useGameContext();
+  const { mutate } = trpc.useMutation("scout.push");
+
   function handleSubmit() {
-    props.onClose();
-    router.push('/push');
+    const game = getGame();
+    if (game === undefined) {
+        showNotification({
+          title: 'Error uploading',
+          message: 'Game undefined, make sure you added points, auto, and end game data!',
+          color: 'red',
+          icon: <IconX />,
+      })
+      return;
+    }
+    mutate(game);
+
+    setTimeout(() => {
+      props.onClose()
+      showNotification({
+        title: 'Successfully uploaded',
+        message: 'Your game has been uploaded!',
+        color: 'green',
+        icon: <IconCheck />,
+      })
+    }, 1000);
   }
+
   
   return <WaffleModal
     isOpen={props.isOpen}
