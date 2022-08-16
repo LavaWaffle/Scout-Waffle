@@ -24,7 +24,7 @@ type GameContextProviderProps = {
   children: ReactNode;
 }
 
-type ShoppingCartContext = {
+type GameContext = {
   getGame: () => Game | undefined,
   setGameProperties: (properties: Partial<Game>) => void,
   resetGame: () => void,
@@ -35,7 +35,7 @@ type ShoppingCartContext = {
 
 }
 
-const GameContext = createContext({} as ShoppingCartContext);
+const GameContext = createContext({} as GameContext);
 
 export function useGameContext() {
   return useContext(GameContext);

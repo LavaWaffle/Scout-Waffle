@@ -1,9 +1,8 @@
 import { Button, Group, Kbd, Text } from "@mantine/core"
 import React from "react";
 import WaffleModal from "./WaffleModal";
-import router from "next/router";
 import { trpc } from "@/utils/trpc";
-import { useGameContext } from "@/context/GameContext";
+import { useGameContext } from "@/contexts/GameContext";
 import { showNotification } from "@mantine/notifications";
 import { IconCheck, IconX } from "@tabler/icons";
 

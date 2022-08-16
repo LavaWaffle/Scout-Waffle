@@ -1,6 +1,7 @@
-import { AppShell, Footer, useMantineTheme, Button } from '@mantine/core';
+import { AppShell, Footer, useMantineTheme, Button, Navbar, Image, Aside } from '@mantine/core';
 import React, { useState } from 'react'
-import { useGameContext, Points, ClimbBar } from '@/context/GameContext';
+import { useGameContext, Points, ClimbBar } from '@/contexts/GameContext';
+import { useInputContext } from '@/contexts/InputContext';
 import { ColorSchemeToggle } from './ColorSchemeToggle';
 import type { LaunchStatus, Win, Team } from '@prisma/client';
 import LaunchModal from './LaunchModal';
@@ -128,6 +129,10 @@ const Layout: React.FC<props> = ({ children }) => {
     
   }
 
+  const launches: LaunchStatus[] = ['GotInUpper', 'GotInLower', 'BounceOut','MissClose','MissFar'];
+
+  const { launch: currentLaunch, setLaunch } = useInputContext();
+
   return (
     <>
       <AppShell
@@ -173,6 +178,31 @@ const Layout: React.FC<props> = ({ children }) => {
               </div>
               </div>
           </Footer>
+        }
+        aside={
+          <Aside p="md" fixed width={{ sm: 85 }}>
+            {launches.map((launch, index) => (
+              <Image
+                styles={{
+                  imageWrapper: {
+                    border: '1.5px solid',
+                    borderColor: currentLaunch === launch ? 'pink' : '',
+                    borderRadius: '0.5rem',
+                    overflow: 'hidden',
+                  }
+                }}
+                className="hover:cursor-pointer my-2"
+                width={50}
+                height={50}
+                key={index}
+                src={`/launches/${launch.replace(/[A-Z]/g, ' $&').trim().toLowerCase()}.svg`}
+                alt={launch.replace(/[A-Z]/g, ' $&').trim()}
+                onClick={() => {
+                  setLaunch(launch);
+                }}
+              />
+            ))}
+          </Aside>
         }
       >
         <main>

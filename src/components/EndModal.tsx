@@ -3,7 +3,7 @@ import React from 'react'
 import { SubTitle } from './LaunchModal'
 import WaffleModal from './WaffleModal'
 import type { Win, Team } from '@prisma/client';
-import type { ClimbBar } from '@/context/GameContext';
+import type { ClimbBar } from '@/contexts/GameContext';
 
 type EndModalProps = {
   isOpen: boolean,

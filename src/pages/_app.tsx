@@ -10,14 +10,15 @@ import { GetServerSidePropsContext } from 'next';
 import { AppProps } from 'next/app';
 import { getCookie, setCookies } from 'cookies-next';
 import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
-import { NotificationsProvider, showNotification } from '@mantine/notifications';
+import { NotificationsProvider } from '@mantine/notifications';
 import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 
 // component imports
 import Head from 'next/head';
 import Layout from "@/components/Layout";
-import { GameContextProvider, useGameContext } from "@/context/GameContext";
-import { IconCheck, IconX } from "@tabler/icons";
+import { GameContextProvider } from "@/contexts/GameContext";
+import { InputContextProvider } from "@/contexts/InputContext";
+import { useEffect } from "react";
 
 const MyApp = (props: AppProps & { colorScheme: ColorScheme }) => {
   const { Component, pageProps } = props;
@@ -37,6 +38,12 @@ const MyApp = (props: AppProps & { colorScheme: ColorScheme }) => {
   };
 
   useHotkeys([['mod+J', () => toggleColorScheme()]]);
+
+  useEffect(() => {
+    // set zoom of page to 1 if it is not set
+    
+  }, []);
+
   return (
     <>
       <Head>
@@ -49,9 +56,11 @@ const MyApp = (props: AppProps & { colorScheme: ColorScheme }) => {
           <NotificationsProvider position="top-right">
             <GameContextProvider>
 
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>   
+              <InputContextProvider>
+                <Layout>
+                  <Component {...pageProps} />
+                </Layout>
+              </InputContextProvider> 
             </GameContextProvider>
           </NotificationsProvider>
         </MantineProvider>

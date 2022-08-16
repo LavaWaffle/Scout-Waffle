@@ -1,4 +1,4 @@
-import type { ClimbBar } from "@/context/GameContext";
+import type { ClimbBar } from "@/contexts/GameContext";
 
 export default function calculateClimbPointValue(bar: ClimbBar) {
   if (bar === 'Low') return 4;
