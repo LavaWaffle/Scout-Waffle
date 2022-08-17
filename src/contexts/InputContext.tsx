@@ -6,8 +6,8 @@ type InputContextProviderProps = {
 }
 
 type InputContext = {
-  launch: LaunchStatus;
-  setLaunch: Dispatch<SetStateAction<LaunchStatus>>;
+  launch: LaunchStatus | 'Erase';
+  setLaunch: Dispatch<SetStateAction<LaunchStatus | 'Erase'>>;
 }
 
 const InputContext = createContext({} as InputContext);
@@ -17,7 +17,7 @@ export function useInputContext() {
 }
 
 export function InputContextProvider({ children }: InputContextProviderProps) {
-  const [launch, setLaunch] = useState<LaunchStatus>('GotInUpper');
+  const [launch, setLaunch] = useState<LaunchStatus | 'Erase'>('GotInUpper');
   
   return (
     <InputContext.Provider value={{

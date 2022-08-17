@@ -2,9 +2,12 @@ import { Button, Group, Kbd, Text } from "@mantine/core"
 import React from "react";
 import WaffleModal from "./WaffleModal";
 import { trpc } from "@/utils/trpc";
-import { useGameContext } from "@/contexts/GameContext";
+import { Points, useGameContext } from "@/contexts/GameContext";
 import { showNotification } from "@mantine/notifications";
 import { IconCheck, IconX } from "@tabler/icons";
+import { useMarkerContext } from "@/contexts/MarkerContext";
+import { Constants } from "@/Constants";
+import { calculateLaunchPointValue } from "@/utils/calculateLaunchPointValue";
 
 type UploadModalProps = {
   isOpen: boolean,
@@ -12,17 +15,37 @@ type UploadModalProps = {
 }
 
 const UploadModal: React.FC<UploadModalProps> = (props) => {
-  const { getGame } = useGameContext();
+  const { getGame, appendMarkers } = useGameContext();
   const { mutate } = trpc.useMutation("scout.push");
+  const { markers, launches } = useMarkerContext();
 
   function handleSubmit() {
     const game = getGame();
+
+
+    markers.forEach((marker, index) => {
+      const launch = launches[index];
+      if (marker === undefined || launch === undefined) return;
+      const point: Points = {
+        isAuto: false,
+        pointType: Constants.LAUNCH_POINT_TYPE,
+        pointValue: calculateLaunchPointValue([launch]),
+        top: marker.top.valueOf(),
+        left: marker.left.valueOf(),
+        launches: {
+          create: [{type: launch}] 
+        }  
+      }
+
+      appendMarkers(point);
+    })
+
     if (game === undefined) {
-        showNotification({
-          title: 'Error uploading',
-          message: 'Game undefined, make sure you added points, auto, and end game data!',
-          color: 'red',
-          icon: <IconX />,
+      showNotification({
+        title: 'Error uploading',
+        message: 'Game undefined, make sure you added points, auto, and end game data!',
+        color: 'red',
+        icon: <IconX />,
       })
       return;
     }

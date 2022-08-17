@@ -129,7 +129,9 @@ const Layout: React.FC<props> = ({ children }) => {
     
   }
 
-  const launches: LaunchStatus[] = ['GotInUpper', 'GotInLower', 'BounceOut','MissClose','MissFar'];
+  type ModifiedLaunchStatus = LaunchStatus | 'Erase';
+
+  const launches: ModifiedLaunchStatus[] = ['GotInUpper', 'GotInLower', 'BounceOut','MissClose','MissFar','Erase'];
 
   const { launch: currentLaunch, setLaunch } = useInputContext();
 
@@ -143,7 +145,7 @@ const Layout: React.FC<props> = ({ children }) => {
         }}
         footer={
           <Footer height={60} p="md">
-            <div className='flex sm:items-center  justify-between'>   
+            <div className='flex sm:items-center justify-between'>   
               <ColorSchemeToggle />
               {/* middle */}
               <div style={{paddingLeft: isMobile === false ? "4.5rem" : "", gap: "2rem"}} >
@@ -195,7 +197,7 @@ const Layout: React.FC<props> = ({ children }) => {
                 width={50}
                 height={50}
                 key={index}
-                src={`/launches/${launch.replace(/[A-Z]/g, ' $&').trim().toLowerCase()}.svg`}
+                src={launch !== "Erase" ? `/launches/${launch.replace(/[A-Z]/g, ' $&').trim().toLowerCase()}.svg` : '/launches/erase.png'}
                 alt={launch.replace(/[A-Z]/g, ' $&').trim()}
                 onClick={() => {
                   setLaunch(launch);

@@ -18,6 +18,7 @@ import Head from 'next/head';
 import Layout from "@/components/Layout";
 import { GameContextProvider } from "@/contexts/GameContext";
 import { InputContextProvider } from "@/contexts/InputContext";
+import { MarkerContextProvider } from "@/contexts/MarkerContext";
 import { useEffect } from "react";
 
 const MyApp = (props: AppProps & { colorScheme: ColorScheme }) => {
@@ -55,11 +56,12 @@ const MyApp = (props: AppProps & { colorScheme: ColorScheme }) => {
         <MantineProvider theme={{ colorScheme: localColorScheme }} withGlobalStyles withNormalizeCSS>
           <NotificationsProvider position="top-right">
             <GameContextProvider>
-
               <InputContextProvider>
-                <Layout>
-                  <Component {...pageProps} />
-                </Layout>
+                <MarkerContextProvider>
+                  <Layout>
+                    <Component {...pageProps} />
+                  </Layout>
+                </MarkerContextProvider>
               </InputContextProvider> 
             </GameContextProvider>
           </NotificationsProvider>
