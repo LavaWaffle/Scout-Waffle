@@ -1,4 +1,4 @@
-import { AppShell, Footer, useMantineTheme, Button, Navbar, Image, Aside } from '@mantine/core';
+import { AppShell, Footer, useMantineTheme, Button, Navbar, Image, Burger, MediaQuery } from '@mantine/core';
 import React, { useState } from 'react'
 import { useGameContext, Points, ClimbBar } from '@/contexts/GameContext';
 import { useInputContext } from '@/contexts/InputContext';
@@ -13,6 +13,8 @@ import { calculateLaunchPointValue } from '@/utils/calculateLaunchPointValue';
 import calculateClimbPointValue from '@/utils/calculateClimbPointValue';
 import { showNotification } from '@mantine/notifications';
 import { IconCheck } from '@tabler/icons';
+import { useMarkerContext } from '@/contexts/MarkerContext';
+
 type props = {
   children: JSX.Element,
 }
@@ -69,6 +71,7 @@ const Layout: React.FC<props> = ({ children }) => {
   // upload state
   const [uploadOpened, setUploadOpened] = useState<boolean>(false);
 
+  const { markers, launches: globalLaunches } = useMarkerContext();
   function handleEndClose() {
     // close modal
     setEndOpened(false);
@@ -89,6 +92,31 @@ const Layout: React.FC<props> = ({ children }) => {
         numberScore: climbRP ? 1 : 0,
       }
     ]);
+    
+    setTimeout(() => {
+      // append markers
+      markers.forEach((marker, index) => {
+        const launch = globalLaunches[index];
+        if (marker === undefined || launch === undefined) return;
+        const point: Points = {
+          isAuto: false,
+          pointType: Constants.LAUNCH_POINT_TYPE,
+          pointValue: calculateLaunchPointValue([launch]),
+          top: marker.top.valueOf(),
+          left: marker.left.valueOf(),
+          launches: {
+            create: [{type: launch}] 
+          }  
+        }
+        appendMarkers(point);
+      })
+      showNotification({
+        title: 'Markers Added',
+        message: 'Markers added to points',
+        color: 'green',
+        icon: <IconCheck />,
+      })
+    }, 500)
     
 
     // create points 
@@ -135,6 +163,8 @@ const Layout: React.FC<props> = ({ children }) => {
 
   const { launch: currentLaunch, setLaunch } = useInputContext();
 
+  const [opened, setOpened] = useState<boolean>(false);
+
   return (
     <>
       <AppShell
@@ -146,7 +176,18 @@ const Layout: React.FC<props> = ({ children }) => {
         footer={
           <Footer height={60} p="md">
             <div className='flex sm:items-center justify-between'>   
-              <ColorSchemeToggle />
+              {/* left */}
+              <div className='flex items-center mt-[-0.5rem] sm:mt-0 space-x-2'>
+                <ColorSchemeToggle />
+                <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+                  <Burger
+                    opened={opened}
+                    onClick={() => setOpened((o) => !o)}
+                    size="lg"
+                    color={theme.colors.gray[6]}
+                  />
+                </MediaQuery>
+              </div>
               {/* middle */}
               <div style={{paddingLeft: isMobile === false ? "4.5rem" : "", gap: "2rem"}} >
                 <Button 
@@ -181,8 +222,8 @@ const Layout: React.FC<props> = ({ children }) => {
               </div>
           </Footer>
         }
-        aside={
-          <Aside p="md" fixed width={{ sm: 85 }}>
+        navbar={
+          <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 90, lg: 90 }}>
             {launches.map((launch, index) => (
               <Image
                 styles={{
@@ -193,7 +234,7 @@ const Layout: React.FC<props> = ({ children }) => {
                     overflow: 'hidden',
                   }
                 }}
-                className="hover:cursor-pointer my-2"
+                className="hover:cursor-pointer py-2 sm:py-0 my-2"
                 width={50}
                 height={50}
                 key={index}
@@ -204,7 +245,7 @@ const Layout: React.FC<props> = ({ children }) => {
                 }}
               />
             ))}
-          </Aside>
+          </Navbar>
         }
       >
         <main>

@@ -14,8 +14,8 @@
     - [x] Climb Ranking Point boolean
     - [x] We Win ("Win", "Lose", "Tie")
     - [x] Our Team ("Red", "Blue")
-- [ ] Back End
-  - [ ] TRPC function to write data to mysql database
+- [x] Back End
+  - [x] TRPC function to write data to mysql database
   - [x] Set up planet scale mysql database
 
 ## How To Use This Program
@@ -44,7 +44,7 @@ DATABASE_URL="mysql://root@127.0.0.1:3309/<dbname>"
 ```
 5. Setup the database
 ``` bash
-pnpx prisma db push
+$ pnpx prisma db push
 ```
 6. Run the server
 ``` bash
