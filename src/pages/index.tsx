@@ -50,7 +50,7 @@ const Home: NextPage = () => {
         markers={markers}
         extraClass="h-[75%]"
         onAddMarker={handleMarkers}
-        markerComponent={customMarkerComponent}
+        markerComponent={CustomMarkerComponent}
       />
     </Container>
   );
@@ -58,7 +58,7 @@ const Home: NextPage = () => {
 
 export default Home;
 
-function customMarkerComponent(props: MarkerComponentProps) {
+const CustomMarkerComponent:React.FC<MarkerComponentProps> = (props) => {
   const { getIndexDetails } = useMarkerContext();
   const { launch: markerLaunch } = getIndexDetails(props.itemNumber.valueOf());
   const { launch: currentLaunch } = useInputContext();
